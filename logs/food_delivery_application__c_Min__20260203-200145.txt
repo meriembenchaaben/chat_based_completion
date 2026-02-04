@@ -377,7 +377,7 @@ CHARACTERISTICS:
 - {}
 
 
-ADDED ELEMENTS (ITERATION 6)
+ADDED ELEMENTS MANUALLY (ITERATION 6)
 --------------------------------------------------------------------------------
 ARCH:
 - {}
