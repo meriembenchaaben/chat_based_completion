@@ -1,6 +1,6 @@
 ### Scenario: Food delivery application
 - CONFIG: C-Full
-- Time : 110 mins
+- Time : 140 mins
   ### Summary (Key Metrics)
 
 # Results of what is generated (from all “MANUAL CLASSIFICATION” sections)
@@ -87,7 +87,7 @@
 ### Scenario: Food delivery application
 - CONFIG: C-Full
 - Log: 20260203-234543
-- Time: 140 mins
+- Time: 110 mins
 
 # Results of what is generated (from all “MANUAL CLASSIFICATION” sections)
 ### ARCH (classes)
