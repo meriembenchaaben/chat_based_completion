@@ -30,7 +30,7 @@ python -m pip install -U openai
 
 ---
 
-## 3) GPU environment variables (recommended)
+## 3) GPU environment variables - this is appropriate  for the author setup
 
 ```bash
 # Use all 4 GPUs
