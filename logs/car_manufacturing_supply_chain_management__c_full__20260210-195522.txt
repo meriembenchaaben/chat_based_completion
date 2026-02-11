@@ -1,0 +1,4044 @@
+EXPERIMENT LOG
+======================================================================
+SCENARIO: Car manufacturing supply chain management
+CONFIG: C-Full
+MODEL: llama3.3-70b
+TEMPERATURE: 0
+CREATED_AT: 20260210-195522
+======================================================================
+
+
+
+ITERATION 1
+--------------------------------------------------------------------------------
+PARTIAL MODEL
+--------------------------------------------------------------------------------
+
+
+ACCEPTED (ITERATION 1)
+--------------------------------------------------------------------------------
+ARCH:
+
+
+ITERATION 1
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     - engine assembly
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Process, Name: engine_testing
+* Type: CONN, Concept: uses, Source: engine assembly, Destination: engine_testing
+* Type: ARCH, Concept: Entity, Name: quality_control_team, Relation: performs, Destination: engine_testing
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Process: engine testingEntity:  quality_control_team
+
+CONNECTIONS:
+- uses: engine assembly - engine testing
+- performs: quality_control_team - engine testing
+
+CHARACTERISTICS:
+- 
+
+
+ACCEPTED (ITERATION 1)
+--------------------------------------------------------------------------------
+ARCH:
+- Entity:  quality_control_team
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 2
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     - engine assembly
+    - quality_control_team
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: Entity, name: supplier, with relation: collaborates -> quality_control_team
+* Type: Process, name: inspection, with relations: uses -> engine assembly, involves -> quality_control_team, measures -> Metric (new metric to be added)
+* Type: MaterialFlow, name: engine_delivery, with relations: sourceProcess -> new Process (e.g., manufacturing), targetProcess -> inspection, destination -> quality_control_team
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Process: inspection
+- Entity:  supplier
+- MaterialFlow: engine_delivery
+
+CONNECTIONS:
+- collaborates: supplier - quality_control_team
+- uses : supplier - engine assembly
+- involves: quality_control_team - inspection
+- measures: quality_control_team - new_metric
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 2)
+--------------------------------------------------------------------------------
+ARCH:
+- Entity:  supplier
+- Process: inspection
+
+CONNECTIONS:
+- collaborates: supplier - quality_control_team
+
+CHARACTERISTICS:
+
+
+ITERATION 3
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+      - entity:
+        - quality_control_team
+    -
+      - entity:
+        - supplier
+    -
+      - process:
+        - inspection
+    -
+      - collaborates:
+        - supplier
+        - quality_control_team
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Resource, Name: engine_parts
+* Type: CONN, Concept: uses, Relation between: engine_assembly - engine_parts
+* Type: CONN, Concept: performs, Relation between: quality_control_team - inspection
+
+
+ITERATION 3
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+      - entity:
+        - quality_control_team
+    -
+      - entity:
+        - supplier
+    -
+      - process:
+        - inspection
+    -
+      - collaborates:
+        - supplier
+        - quality_control_team
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Resource, Name: engine_parts
+* Type: CONN, Concept: uses, Relation between: engine_assembly - engine_parts
+* Type: CONN, Concept: performs, Relation between: quality_control_team - inspection
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Resource: engine_parts
+
+CONNECTIONS:
+- uses: engine_assembly - engine_parts
+- performs: quality_control_team - inspection
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 3)
+--------------------------------------------------------------------------------
+ARCH:
+- Resource:  engine_parts
+
+CONNECTIONS:
+- 'uses: engine_assembly - engine_parts'
+- performs: quality_control_team - inspection
+
+CHARACTERISTICS:
+
+
+ITERATION 4
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+    -
+      - resource:
+        - engine_parts
+    -
+      - process:
+        - inspection
+    -
+      - collaborates:
+        - supplier - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+    -
+      - performs:
+        - quality_control_team - inspection
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH - Add a new 'Resource' called 'tools' to represent equipment used in the manufacturing process.
+* Type: CONN - Add a 'uses' relationship between 'inspection' process and 'tools' resource.
+* Type: ARCH - Add a new 'Metric' called 'defect_rate' to measure the quality of the engine assembly process, and a 'measures' relationship between 'engine_assembly' process and 'defect_rate' metric.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Resource: tools
+- Metric :defect_rate
+
+CONNECTIONS:
+- uses: inspection - tools
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 4)
+--------------------------------------------------------------------------------
+ARCH:
+- Metric : defect_rate
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 5
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+    -
+      - resource:
+        - engine_parts
+    -
+      - metric:
+        - defect_rate
+    -
+      - collaborates:
+        - supplier - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+    -
+      - performs:
+        - quality_control_team - inspection
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Relationship, Name: partnership, between supplier and quality_control_team, with type "supply_contract"
+* Type: CONN, Relation: measures, between process "engine_assembly" and metric "defect_rate"
+* Type: ARCH, Concept: Constraint, Name: "lead_time_limit", with applies_to relation to process "engine_assembly"
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Relationship: partnership with supplier
+- Constraint :led_time-limit
+
+CONNECTIONS:
+- measures: inspection - tools
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 5)
+--------------------------------------------------------------------------------
+ARCH:
+- 
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 5)
+--------------------------------------------------------------------------------
+ARCH:
+- {'process': ['battery production']}
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+- {}
+
+
+ITERATION 6
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+    -
+      - resource:
+        - engine_parts
+    -
+      - metric:
+        - defect_rate
+    -
+      - collaborates:
+        - supplier - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+    -
+      - performs:
+        - quality_control_team - inspection
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Relationship, Name: partnership, between supplier and quality_control_team, with type "supply_chain_partnership"
+* Type: CONN, Relation: uses, between battery_production and engine_parts
+* Type: ARCH, Concept: Metric, Name: production_cost, with relation measures to battery_production process
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Relationship: partnership with supplier
+- Metric :production_cost
+
+CONNECTIONS:
+- Relationship: supplier - quality_control_team
+- uses : battery production - engine_parts
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 6)
+--------------------------------------------------------------------------------
+ARCH:
+- Metric: production_cost
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 7
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+    -
+      - resource:
+        - engine_parts
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+    -
+      - collaborates:
+        - supplier - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+    -
+      - performs:
+        - quality_control_team - inspection
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Relationship, Name: partnership, between supplier and quality_control_team, with type "supply_contract"
+* Type: CONN, Relation: uses, between inspection and engine_parts
+* Type: ARCH, Concept: Metric, Name: production_time, with type "time", and relation measures with process engine_assembly
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Metric :production_time
+
+CONNECTIONS:
+- uses : inspection - engine_parts
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 7)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 7)
+--------------------------------------------------------------------------------
+ARCH:
+- {'process': ['final  assembly']}
+
+CONNECTIONS:
+- {'involves': [' battery production - supplier']}
+
+CHARACTERISTICS:
+- {}
+
+
+ITERATION 8
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+        - final assembly
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+    -
+      - resource:
+        - engine_parts
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+    -
+      - collaborates:
+        - supplier - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+    -
+      - performs:
+        - quality_control_team - inspection
+    -
+      - involves:
+        -  battery production - supplier
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: MaterialFlow, Name: engine_parts_flow, Relations: sourceProcess -> engine_assembly, targetProcess -> final_assembly
+* Type: CONN, Concept: uses, Relation: battery_production - engine_parts
+* Type: ARCH, Concept: Metric, Name: production_time, Relations: measures -> final_assembly, evaluates -> final_assembly
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Metric :production_time
+
+CONNECTIONS:
+- Material Flow : engine assembly - final assembly
+- uses : battery_production - engine_parts
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 8)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- Material Flow : engine assembly - final assembly
+
+CHARACTERISTICS:
+
+
+ITERATION 9
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+        - final assembly
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+    -
+      - resource:
+        - engine_parts
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+    -
+      - collaborates:
+        - supplier - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+    -
+      - performs:
+        - quality_control_team - inspection
+    -
+      - material_flow:
+        - engine assembly - final assembly
+    -
+      - involves:
+        -  battery production - supplier
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: Entity "manufacturer" with relation "performs" to process "final assembly"
+* Type: CONN "measures" from process "engine assembly" to metric "production_cost"
+* Type: ARCH MaterialFlow from process "battery production" to process "final assembly" with relation "targetProcess" to process "final assembly" and "sourceProcess" to process "battery production"
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Entity : manufacturer
+- Material Flow : battery production - final assembly
+
+CONNECTIONS:
+- measures : engine assembly - production_cost
+- uses : battery_production - engine_parts
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 9)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- Material Flow : engine assembly - final assembly
+
+CHARACTERISTICS:
+
+
+ITERATION 10
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+        - final assembly
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+    -
+      - resource:
+        - engine_parts
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+    -
+      - collaborates:
+        - supplier - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+    -
+      - performs:
+        - quality_control_team - inspection
+    -
+      - material_flow:
+        - engine assembly - final assembly
+        - battery production - final assembly
+    -
+      - involves:
+        -  battery production - supplier
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: Entity "manufacturer" with relation "performs" to process "final assembly"
+* Type: CONN "measures" between process "engine assembly" and metric "production_cost"
+* Type: ARCH MaterialFlow from "battery production" to "engine assembly" with relation "targetProcess" to process "engine assembly"
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Entity : manufacturer
+
+CONNECTIONS:
+- measures : engine assembly - production_cost
+- Material Flow : battery production - engine assembly
+
+CHARACTERISTICS:
+
+
+
+
+ACCEPTED (ITERATION 10)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 10)
+--------------------------------------------------------------------------------
+ARCH:
+- Resource : battery packs
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+
+
+
+ITERATION 11
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+        - final assembly
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+    -
+      - resource:
+        - engine_parts
+        - battery packs
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+    -
+      - collaborates:
+        - supplier - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+    -
+      - performs:
+        - quality_control_team - inspection
+    -
+      - material_flow:
+        - engine assembly - final assembly
+        - battery production - final assembly
+    -
+      - involves:
+        -  battery production - supplier
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: Entity "manufacturer" with performs relationship to "final assembly" process
+* Type: CONN - uses relationship between "battery production" process and "battery packs" resource
+* Type: ARCH - Constraint "production deadline" with applies_to relationship to "final assembly" process
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Entity : manufacturer
+- Constraint : production_deadline
+
+CONNECTIONS:
+- uses : battery production - battery packs
+- 
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 11)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- uses : battery production - battery packs
+
+CHARACTERISTICS:
+
+
+ITERATION 12
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+        - final assembly
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+    -
+      - resource:
+        - engine_parts
+        - battery packs
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+    -
+      - collaborates:
+        - supplier - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+        - battery production - battery packs
+    -
+      - performs:
+        - quality_control_team - inspection
+    -
+      - material_flow:
+        - engine assembly - final assembly
+        - battery production - final assembly
+    -
+      - involves:
+        -  battery production - supplier
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH - Add a new Entity "manufacturer" to represent the car manufacturing company.
+* Type: CONN - Add a "measures" relation between the "final assembly" process and the "production_cost" metric to track production costs.
+* Type: CONN - Add an "applies_to" relation between a new Constraint "quality_standard" and the "inspection" process to ensure quality standards are met.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Entity : manufacturer
+- Constraint : production_deadline
+
+CONNECTIONS:
+- measures : final assembly - production_cost
+- applies : inspection - quality standard
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 12)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- applies : inspection - quality standard
+
+CHARACTERISTICS:
+
+
+ITERATION 14
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+        - final assembly
+        - testing
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+    -
+      - resource:
+        - engine_parts
+        - battery packs
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+    -
+      - collaborates:
+        - supplier - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+        - battery production - battery packs
+    -
+      - applies:
+        - inspection - quality standard
+    -
+      - performs:
+        - quality_control_team - inspection
+    -
+      - material_flow:
+        - engine assembly - final assembly
+        - battery production - final assembly
+    -
+      - involves:
+        -  battery production - supplier
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Relationship, Name: partnership, between supplier and quality_control_team, with type "business partnership" and terms "mutual benefit"
+* Type: CONN, Relation: measures, between process "final assembly" and metric "production_cost"
+* Type: CONN, Relation: produces, between process "engine assembly" and resource "engines", with engines being a new Resource concept
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Entity : manufacturer
+- Constraint : production_deadline
+
+CONNECTIONS:
+- measures : final assembly - production_cost
+- produces : engine assembly - engines 
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 12)
+--------------------------------------------------------------------------------
+ARCH:
+- {'process': ['welding']}
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+- {}
+
+
+ITERATION 13
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+        - final assembly
+        - welding
+        - testing
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+    -
+      - resource:
+        - engine_parts
+        - battery packs
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+    -
+      - collaborates:
+        - supplier - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+        - battery production - battery packs
+    -
+      - applies:
+        - inspection - quality standard
+    -
+      - performs:
+        - quality_control_team - inspection
+    -
+      - material_flow:
+        - engine assembly - final assembly
+        - battery production - final assembly
+    -
+      - involves:
+        -  battery production - supplier
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Relationship, Name: partnership, between Entity: supplier and Entity: quality_control_team, with relation: collaborates
+* Type: CONN, Relation: uses, between Process: final_assembly and Resource: engine_parts
+* Type: ARCH, Concept: Metric, Name: production_time, with relation: measures, to Process: engine_assembly and Entity: quality_control_team
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Metric: production_time
+
+CONNECTIONS:
+- Relationship : supplier - quality_control_team
+- uses : final_assembly - engine_parts
+- measures: engine_assembly  - production_time
+- measures: quality_control_team  - production_time
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 13)
+--------------------------------------------------------------------------------
+ARCH:
+- 
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 13)
+--------------------------------------------------------------------------------
+ARCH:
+- {}
+
+CONNECTIONS:
+- {'material_flow': ['welding - final assembly']}
+
+CHARACTERISTICS:
+- {}
+
+
+ITERATION 14
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+        - final assembly
+        - welding
+        - testing
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+    -
+      - resource:
+        - engine_parts
+        - battery packs
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+    -
+      - collaborates:
+        - supplier - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+        - battery production - battery packs
+    -
+      - applies:
+        - inspection - quality standard
+    -
+      - performs:
+        - quality_control_team - inspection
+    -
+      - material_flow:
+        - engine assembly - final assembly
+        - battery production - final assembly
+        - welding - final assembly
+    -
+      - involves:
+        -  battery production - supplier
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Relationship, Name: partnership, between supplier and quality_control_team, with relation: collaborates
+* Type: CONN, Relation: uses, between process: final assembly and resource: engine_parts, to reflect the use of engine parts in final assembly
+* Type: ARCH, Concept: Metric, Name: production_time, with relation: measures, to process: engine_assembly, to track production time of engine assembly
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Metric: production_time
+
+CONNECTIONS:
+- Relationship : supplier - quality_control_team
+- uses : final_assembly - engine_parts
+- measures: engine_assembly  - production_time
+- measures: quality_control_team  - production_time
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 14)
+--------------------------------------------------------------------------------
+ARCH:
+- 
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 14)
+--------------------------------------------------------------------------------
+ARCH:
+- {'process': 'painting'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {}
+
+
+ITERATION 15
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+        - final assembly
+        - welding
+        - painting
+        - testing
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+    -
+      - resource:
+        - engine_parts
+        - battery packs
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+    -
+      - collaborates:
+        - supplier - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+        - battery production - battery packs
+    -
+      - applies:
+        - inspection - quality standard
+    -
+      - performs:
+        - quality_control_team - inspection
+    -
+      - material_flow:
+        - engine assembly - final assembly
+        - battery production - final assembly
+        - welding - final assembly
+    -
+      - involves:
+        -  battery production - supplier
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Relationship, Name: partnership, between Entity: supplier and Entity: quality_control_team, with relation: collaborates
+* Type: CONN, Relation: uses, between Process: final_assembly and Resource: battery_packs
+* Type: ARCH, Concept: Metric, Name: production_time, with relation: measures, to Process: engine_assembly and Entity: quality_control_team
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Metric: production_time
+
+CONNECTIONS:
+- Relationship : supplier - quality_control_team
+- uses : final_assembly - battery packs
+- measures: engine_assembly  - production_time
+- measures: quality_control_team  - production_time
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 15)
+--------------------------------------------------------------------------------
+ARCH:
+- 
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 15)
+--------------------------------------------------------------------------------
+ARCH:
+- {}
+
+CONNECTIONS:
+- {'Material_flow': ['welding - painting']}
+
+CHARACTERISTICS:
+- {}
+
+
+ITERATION 16
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+        - final assembly
+        - welding
+        - painting
+        - testing
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+    -
+      - resource:
+        - engine_parts
+        - battery packs
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+    -
+      - collaborates:
+        - supplier - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+        - battery production - battery packs
+    -
+      - applies:
+        - inspection - quality standard
+    -
+      - performs:
+        - quality_control_team - inspection
+    -
+      - material_flow:
+        - engine assembly - final assembly
+        - battery production - final assembly
+        - welding - final assembly
+        - welding - painting
+    -
+      - involves:
+        -  battery production - supplier
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Constraint, Name: production_time_limit, Relation: applies_to -> final_assembly
+* Type: CONN, Concept: Relationship, Name: partnership, Relation: collaborates -> supplier - quality_control_team
+* Type: CONN, Concept: MaterialFlow, Name: engine_parts_flow, Relation: sourceProcess -> engine_assembly, targetProcess -> inspection, source -> supplier, destination -> engine_assembly
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Constraint: production_time_limit
+
+CONNECTIONS:
+- applies : production_time_limit - final assembly
+- Relationship : supplier - quality_control_team
+- MaterialFlow: engine_assembly  - inspection
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 16)
+--------------------------------------------------------------------------------
+ARCH:
+- 
+
+CONNECTIONS:
+- MaterialFlow: engine_assembly  - inspection
+
+CHARACTERISTICS:
+
+
+ITERATION 17
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+        - final assembly
+        - welding
+        - painting
+        - testing
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+    -
+      - resource:
+        - engine_parts
+        - battery packs
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+    -
+      - collaborates:
+        - supplier - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+        - battery production - battery packs
+    -
+      - applies:
+        - inspection - quality standard
+    -
+      - performs:
+        - quality_control_team - inspection
+    -
+      - material_flow:
+        - engine assembly - final assembly
+        - battery production - final assembly
+        - welding - final assembly
+        - welding - painting
+        - engine assembly - inspection
+    -
+      - involves:
+        -  battery production - supplier
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* ARCH: Add a new Entity "manufacturer" to represent the car manufacturing company.
+* CONN: Add a "measures" relation between the "final assembly" process and the "production_cost" metric to track the cost of the final assembly process.
+* CONN: Add a "produces" relation between the "battery production" process and a new Resource "batteries" to represent the output of the battery production process.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Entity: manufactrar
+- Ressource: batteries
+
+CONNECTIONS:
+- measures : final assembly - production_cost
+- produces : battery production - batteries
+
+CHARACTERISTICS:
+
+
+
+ACCEPTED (ITERATION 17)
+--------------------------------------------------------------------------------
+ARCH:
+- 
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 17)
+--------------------------------------------------------------------------------
+ARCH:
+- {'entity': ['inspector']}
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+- {}
+
+
+ITERATION 18
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+        - final assembly
+        - welding
+        - painting
+        - testing
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+        - inspector
+    -
+      - resource:
+        - engine_parts
+        - battery packs
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+    -
+      - collaborates:
+        - supplier - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+        - battery production - battery packs
+    -
+      - applies:
+        - inspection - quality standard
+    -
+      - performs:
+        - quality_control_team - inspection
+    -
+      - material_flow:
+        - engine assembly - final assembly
+        - battery production - final assembly
+        - welding - final assembly
+        - welding - painting
+        - engine assembly - inspection
+    -
+      - involves:
+        -  battery production - supplier
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* ARCH: Add a new Entity "logistics_provider" to manage material flows.
+* CONN: Add a "collaborates" relationship between "inspector" and "quality_control_team".
+* CONN: Add a "measures" relationship between "final_assembly" Process and "production_cost" Metric.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Entity: logistics_provider
+- Ressource: batteries
+
+CONNECTIONS:
+- collaborates : inspector - quality_control_team
+- measures : final_assembly - production_cost
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 18)
+--------------------------------------------------------------------------------
+ARCH:
+- 
+
+CONNECTIONS:
+- collaborates : inspector - quality_control_team
+- measures : final_assembly - production_cost
+
+CHARACTERISTICS:
+
+
+ITERATION 19
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+        - final assembly
+        - welding
+        - painting
+        - testing
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+        - inspector
+    -
+      - resource:
+        - engine_parts
+        - battery packs
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+    -
+      - collaborates:
+        - supplier - quality_control_team
+        - inspector - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+        - battery production - battery packs
+    -
+      - applies:
+        - inspection - quality standard
+    -
+      - performs:
+        - quality_control_team - inspection
+    -
+      - material_flow:
+        - engine assembly - final assembly
+        - battery production - final assembly
+        - welding - final assembly
+        - welding - painting
+        - engine assembly - inspection
+    -
+      - involves:
+        -  battery production - supplier
+    -
+      - measures:
+        - final_assembly - production_cost
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Relationship, Name: partnership, between Entity: supplier and Entity: quality_control_team
+* Type: CONN, Relation: uses, between Process: final_assembly and Resource: battery_packs
+* Type: ARCH, Concept: Metric, Name: lead_time, with relation: measures, to Process: engine_assembly
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- Metric: lead_time
+
+CONNECTIONS:
+- uses  : final_assembly - battery packs
+- measures : engine_assembly - lead_time
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 19)
+--------------------------------------------------------------------------------
+ARCH:
+- 
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 19)
+--------------------------------------------------------------------------------
+ARCH:
+- {'Metric': ['standards']}
+
+CONNECTIONS:
+- {'evaluation': 'Inspection - standards'}
+
+CHARACTERISTICS:
+- {}
+
+
+ITERATION 20
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+        - final assembly
+        - welding
+        - painting
+        - testing
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+        - inspector
+    -
+      - resource:
+        - engine_parts
+        - battery packs
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+        - standards
+    -
+      - collaborates:
+        - supplier - quality_control_team
+        - inspector - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+        - battery production - battery packs
+    -
+      - applies:
+        - inspection - quality standard
+    -
+      - performs:
+        - quality_control_team - inspection
+    -
+      - material_flow:
+        - engine assembly - final assembly
+        - battery production - final assembly
+        - welding - final assembly
+        - welding - painting
+        - engine assembly - inspection
+    -
+      - involves:
+        -  battery production - supplier
+    -
+      - measures:
+        - final_assembly - production_cost
+    -
+      - evaluation:
+        - Inspection - standards
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* ARCH: Add a new Entity "manufacturer" to represent the car manufacturing company.
+* CONN: Add a "collaborates" relationship between "manufacturer" and "supplier" to represent their partnership.
+* CONN: Add a "measures" relationship between "inspection" Process and "defect_rate" Metric to track the defect rate during the inspection process.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'entity': ['manufacturer']}
+
+CONNECTIONS:
+- {'collaborates': ['manufacturer - supplier']}
+- {'measures': ['inspection - defect_rate']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 20)
+--------------------------------------------------------------------------------
+ARCH:
+- 
+
+CONNECTIONS:
+- {'measures': ['inspection - defect_rate']}
+
+CHARACTERISTICS:
+
+
+ITERATION 21
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+        - final assembly
+        - welding
+        - painting
+        - testing
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+        - inspector
+    -
+      - resource:
+        - engine_parts
+        - battery packs
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+        - standards
+    -
+      - collaborates:
+        - supplier - quality_control_team
+        - inspector - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+        - battery production - battery packs
+    -
+      - applies:
+        - inspection - quality standard
+    -
+      - measures:
+        - inspection - defect_rate
+    -
+      - performs:
+        - quality_control_team - inspection
+    -
+      - material_flow:
+        - engine assembly - final assembly
+        - battery production - final assembly
+        - welding - final assembly
+        - welding - painting
+        - engine assembly - inspection
+    -
+      - involves:
+        -  battery production - supplier
+    -
+      - measures:
+        - final_assembly - production_cost
+    -
+      - evaluation:
+        - Inspection - standards
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* ARCH: Add a new Entity "logistics_provider" to manage material flows.
+* CONN: Add a "collaborates" relationship between "logistics_provider" and "supplier".
+* CONN: Add an "involves" relationship between "final_assembly" and "logistics_provider" to ensure timely delivery of assembled cars.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'entity': ['logistics_provider']}
+
+CONNECTIONS:
+- {'collaborates': ['supplier - logistics_provider']}
+- {'involves': ['final_assembly - logistics_provider']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 21)
+--------------------------------------------------------------------------------
+ARCH:
+- 
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 21)
+--------------------------------------------------------------------------------
+ARCH:
+- {'Metric': ['gloss level']}
+
+CONNECTIONS:
+- {'evaluation': ['painting - gloss-level']}
+
+CHARACTERISTICS:
+- {}
+
+
+ITERATION 22
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Car manufacturing supply chain management
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - engine assembly
+        - inspection
+        - battery production
+        - final assembly
+        - welding
+        - painting
+        - testing
+    -
+      - entity:
+        - supplier
+        - quality_control_team
+        - inspector
+    -
+      - resource:
+        - engine_parts
+        - battery packs
+    -
+      - metric:
+        - defect_rate
+        - production_cost
+        - standards
+        - gloss level
+    -
+      - collaborates:
+        - supplier - quality_control_team
+        - inspector - quality_control_team
+    -
+      - uses:
+        - engine_assembly- engine_parts
+        - battery production - battery packs
+    -
+      - applies:
+        - inspection - quality standard
+    -
+      - measures:
+        - inspection - defect_rate
+    -
+      - performs:
+        - quality_control_team - inspection
+    -
+      - material_flow:
+        - engine assembly - final assembly
+        - battery production - final assembly
+        - welding - final assembly
+        - welding - painting
+        - engine assembly - inspection
+    -
+      - involves:
+        -  battery production - supplier
+    -
+      - measures:
+        - final_assembly - production_cost
+    -
+      - evaluation:
+        - inspection - standards
+        - painting - gloss-level
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Ecosystem, Name: CarManufacturingEcosystem, with containment relations to existing entities, resources, processes, and relationships.
+* Type: CONN, Relation: produces, between Process: engine_assembly and Resource: engines, to model the output of the engine assembly process.
+* Type: CONN, Relation: applies_to, between Constraint: quality_standard and Process: final
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Ecosystem': ['CarManufacturingEcosystem']}
+- {'Constraint': ['quality_standard']}
+
+CONNECTIONS:
+- {'produces': ['engine_assembly - engines']}
+- {'applies_to': ['final_assembly - quality_standard ']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 22)
+--------------------------------------------------------------------------------
+ARCH:
+- 
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 22)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'constrained by': ['final_assembly - production_capacity']}
+
+CHARACTERISTICS:
+- {'constraint': ['capacity production']}
