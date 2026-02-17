@@ -139,3 +139,120 @@
 - Overlap(A,M) = 0
 - |A ∪ M| = 30
 - AI_Contribution = 17/30 = 0.5667 = 56.7%
+
+
+--------------------------------------------------------------------------
+
+
+### Scenario: Car manufacturing supply chain management
+- CONFIG: C-Min
+- Log: 20260211-202334
+- Model: llama3.3-70b
+- Temperature: 0
+
+# Results of what is generated (from all “MANUAL CLASSIFICATION” sections)
+
+### ARCH (concepts)
+# unique shown = 11
+# Total generated occurrences = 68
+- {'entity': ['manufacturer']} — 27
+- {'Metric': ['lead_time']} — 11
+- {'Resource': ['labor']} — 11
+- {'Resource': ['labor ']} — 5
+- {'Resource': ['assembly line workers  ']} — 4
+- {'Metric': ['lead_time  ']} — 4
+- {'process': ['logistics and transportation']} — 2
+- {'process': ['quality control']} — 1
+- {'process': ['final_assembly ']} — 1
+- {'process': ['logistics_and_shipping  ']} — 1
+- {'Resource': ['assembly_line']} — 1
+
+### CONNECTIONS (relations)
+# unique shown = 8
+# Total generated occurrences = 11
+- {'Relationship: [supplier-manufacturer]'} — 2
+- {'involves: [ manufacturer-final_assembly]'} — 2
+- {'Involves': 'manufacturer-final_assembly'} — 2
+- {'Relationship: [supplier-battery_production]'} — 1
+- {'involves: [ supplier-engine_assembly]'} — 1
+- {'Material_flow': 'battery production - final assembly'} — 1
+- {'Involves': ['inspector-quality control']} — 1
+- {'Involves': 'inspector-testing'} — 1
+
+### CHARACTERISTICS (attributes / properties)
+# unique shown = 0
+# Total generated occurrences = 0
+- (none)
+
+
+# AI ACCEPTED (from all “ACCEPTED (ITERATION …)” sections) — unique list
+### ARCH (concepts)
+- process
+- {'process:  final_assembly'}
+
+### CONNECTIONS (relations)
+- {'Relationship: [supplier-battery_production]'}
+- {'Material_flow': 'battery production - final assembly'}
+- {'Involves': ['inspector-quality control']}
+- {'Involves': 'inspector-testing'}
+
+### CHARACTERISTICS (attributes / properties)
+- (none)
+
+
+## ADDED ELEMENTS MANUALLY (from all “ADDED ELEMENTS MANUALLY (ITERATION …)” sections) — unique list
+### ARCH (concepts)
+- entity: supplier
+- {'process': 'battery production'}
+- {'resource:  battery packs'}
+- {'process : welding'}
+- {'metric : - production_cost'}
+- {'metric': 'standards'}
+- {'entity': {'inspector'}}
+- {'process': 'testing'}
+- {'resource': 'engine_parts'}
+- {'metric': ' gloss-level'}
+- {'metric': ' defect_rate'}
+
+### CONNECTIONS (relations)
+- {'material_flow: engine assembly - final assembly'}
+- {'measures': ' final_assembly - production_cost'}
+- {'evaluation': {'quality control - standards'}}
+- {'Material flow': ['welding - final_assembly']}
+- {'Material flow': ['welding - painting']}
+- {'uses': 'engine_assembly- engine_parts'}
+- {'evaluation': 'painting - gloss-level'}
+- {'measures': 'quality control - defect_rate'}
+
+### CHARACTERISTICS (attributes / properties)
+- {'constraint': ['capacity production']}
+
+
+### Candidates / Uniqueness
+- Candidates_ARCH = 68
+- Candidates_CONN = 11
+- Candidates_CHAR = 0
+- Candidates_ALL  = 68 + 11 + 0 = 79
+
+- Unique_ARCH = 11
+- Unique_CONN = 8
+- Unique_CHAR = 0
+- Unique_ALL  = 11 + 8 + 0 = 19
+
+- Redundancy_% = (1 - 19/79) * 100 = 75.9%
+
+
+### Metrics (binary acceptance; denominator = total suggestion occurrences)
+- Acc_ARCH = 2/68 = 0.0294 = 2.9%
+- Acc_CONN = 4/11 = 0.3636 = 36.4%
+- Acc_CHAR = -- (no suggested characteristics)
+- Acc_ALL  = (2 + 4) / (68 + 11) = 6/79 = 0.0759 = 7.6%
+- Contr_ALL = 0/79 = 0.0%
+- Irrel_ALL = 1 - (6/79) = 73/79 = 0.9241 = 92.4%
+
+#### AI contribution (accepted vs final model = accepted ∪ manual)
+- |A| = 2 + 4 + 0 = 6
+- |M| = 11 + 8 + 1 = 20
+- Overlap(A,M) = 0
+- |A ∪ M| = 26
+- AI_Contribution = 6/26 = 0.2308 = 23.1%
