@@ -1,0 +1,4587 @@
+EXPERIMENT LOG
+======================================================================
+SCENARIO: Aircraft maintenance routing system
+CONFIG: C-Full
+MODEL: llama3.3-70b
+TEMPERATURE: 0
+CREATED_AT: 20260218-150405
+======================================================================
+
+
+
+ITERATION 1
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forcasting
+    - (none)
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Entity, Name: MaintenanceTeam
+* Type: CONN, Relation: performs, Source: MaintenanceTeam, Destination: maintenance forcasting
+* Type: ARCH, Concept: Resource, Name: SpareParts, Relation: uses, Source: maintenance forcasting, Destination: SpareParts
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': ['MaintenanceTeam']}
+- {'Resource': ['SpareParts']}
+
+CONNECTIONS:
+- {'uses': ['maintenance forcasting - SpareParts']}
+- {'performs': ['MaintenanceTeam - maintenance forcasting ']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 1)
+--------------------------------------------------------------------------------
+ARCH:
+- {'resource': 'spare parts'}
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+
+
+ITERATION 2
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forcasting
+      - resource:
+        - spare parts
+    - (none)
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Entity, Name: MaintenanceTeam
+* Type: CONN, Relation: uses, Source: MaintenanceTeam, Destination: spare parts
+* Type: ARCH, Concept: Metric, Name: MaintenanceCost, Relation: measures, Destination: maintenance forcasting
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': ['MaintenanceTeam']}
+- {'Metric': ['Maintenance Cost']}
+
+CONNECTIONS:
+- {'uses': ['maintenance forcasting - SpareParts']}
+- {'measures': ['Maintenance Cost - maintenance forcasting ']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 2)
+--------------------------------------------------------------------------------
+ARCH:
+- {'Metric': ['Maintenance Cost']}
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+
+
+ITERATION 3
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forcasting
+    -
+      - resource:
+        - spare parts
+    -
+      - Metric:
+        - Maintenance Cost
+    - (none)
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Entity, Name: Maintenance Team
+* Type: CONN, Concept: uses, Relation between: Maintenance Team and spare parts
+* Type: CONN, Concept: measures, Relation between: Maintenance Team and Maintenance Cost
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': ['MaintenanceTeam']}
+
+CONNECTIONS:
+- {'uses': ['Maintenance Team - SpareParts']}
+- {'measures': ['Maintenance Cost - Maintenance Team ']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 3)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 3)
+--------------------------------------------------------------------------------
+ARCH:
+- {'process': ['maintenance_scheduling']}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 4
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forcasting
+        - maintenance_scheduling
+    -
+      - resource:
+        - spare parts
+    -
+      - Metric:
+        - Maintenance Cost
+    - (none)
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+* Type: Entity (e.g., "Maintenance Team") with a "performs" relation to the "maintenance_scheduling" process
+* Type: CONN - a "uses" relation between the "maintenance forcasting" process and the "spare parts" resource
+* Type: ARCH - a "Constraint" (e.g., "Regulatory Requirements") with an "applies_to" relation to the "maintenance_scheduling" process
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': ['MaintenanceTeam']}
+- {'Constraint': ['Regulatory Requirements']}
+
+CONNECTIONS:
+- {'uses': ['Maintenance forcasting - SpareParts']}
+- {'performs': [' Maintenance Team - maintenance_scheduling']}
+- {'applies_to': ['Regulatory Requirements - maintenance_scheduling']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 4)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 4)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'information_flow': ['maintenance_forecasting - maintenance_scheduling']}
+
+CHARACTERISTICS:
+
+
+ITERATION 5
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forcasting
+        - maintenance_scheduling
+    -
+      - resource:
+        - spare parts
+    -
+      - Metric:
+        - Maintenance Cost
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: Entity (name: Maintenance Team) with relation: performs -> maintenance_scheduling
+* Type: Relationship (name: SupplyChain) with relations: involves -> maintenance_scheduling, evaluates_ -> Maintenance Cost
+* Type: Constraint (name: SparePartsAvailability) with relation: applies_to -> maintenance_scheduling
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': ['MaintenanceTeam']}
+- {'Constraint': ['SparePartsAvailability']}
+
+CONNECTIONS:
+- {'performs': [' Maintenance Team - maintenance_scheduling']}
+- {'applies_to': ['SparePartsAvailability - maintenance_scheduling']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 5)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 5)
+--------------------------------------------------------------------------------
+ARCH:
+- {'process': ['spare time allocation']}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 6
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - spare time allocation
+    -
+      - resource:
+        - spare parts
+    -
+      - Metric:
+        - Maintenance Cost
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: Entity (name: Maintenance Team) with relation: performs -> maintenance scheduling
+* Type: Relationship (name: Supplier Contract) with relation: involves -> maintenance forecasting and applies_to -> spare time allocation
+* Type: Constraint (name: Spare Part Availability) with relation: applies_to -> spare time allocation and have -> maintenance forecasting
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': ['MaintenanceTeam']}
+- {'Constraint': ['Spare Part Availability']}
+
+CONNECTIONS:
+- {'applies_to': ['Spare Part Availability -  spare time allocation']}
+- {'have': ['maintenance_forecast - Spare Part Availability']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 6)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 6)
+--------------------------------------------------------------------------------
+ARCH:
+- {'Metric': [' Parts Availability rate']}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 7
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - spare time allocation
+    -
+      - resource:
+        - spare parts
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: Entity (Aircraft Maintenance Team) with relation: performs -> maintenance forecasting, maintenance scheduling, spare time allocation
+* Type: Resource (Maintenance Equipment) with relation: isUsed -> maintenance forecasting, maintenance scheduling, spare time allocation
+* Type: Relationship (Maintenance Contract) with relation: involves -> maintenance forecasting, maintenance scheduling, spare time allocation and evaluates_ -> Maintenance Cost, Parts Availability rate
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': ['Aircraft Maintenance Team']}
+- {'Resource': ['Maintenance Equipment']}
+
+CONNECTIONS:
+- {'applies_to': ['Spare Part Availability -  spare time allocation']}
+- {'isUsed': ['Maintenance Equipment - maintenance scheduling']}
+- {'isUsed': ['Maintenance Equipment - maintenance forecasting']}
+- {'isUsed': ['Maintenance Equipment - spare time allocation']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 7)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+
+
+
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 7)
+--------------------------------------------------------------------------------
+ARCH:
+- {'process': 'maintenance execution'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 8
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - spare time allocation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+* Type: Entity (e.g., "Maintenance Team") with a "performs" relation to the "maintenance execution" process
+* Type: CONN - a "uses" relation between the "maintenance execution" process and the "spare parts" resource
+* Type: ARCH - a "Constraint" (e.g., "Spare Parts Availability") with an "applies_to" relation to the "spare time allocation" process
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': ['Maintenance Team']}
+- {'Constraint': ['Availability']}
+
+CONNECTIONS:
+- {'performs': ['Maintenance Team -  maintenance execution']}
+- {'uses': ['maintenance execution -spare parts']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 8)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'uses': ['maintenance execution -spare parts']}
+
+CHARACTERISTICS:
+
+
+ITERATION 9
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - spare time allocation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+    -
+      - uses:
+        - maintenance execution -spare parts
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: Entity (Aircraft Maintenance Team) with relation: performs -> maintenance execution
+* Type: CONN (Relationship) with relation: collaborates -> between Aircraft Maintenance Team and another Entity (e.g., Quality Control Team)
+* Type: CONN (measures) with relation: measures -> between maintenance forecasting process and Metric (e.g., Forecasting Accuracy)
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': ['Aircraft  Maintenance Team']}
+- {'Constraint': ['Availability']}
+
+CONNECTIONS:
+- {'measures': ['maintenance forecasting process -  Forecasting Accuracy']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 9)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 9)
+--------------------------------------------------------------------------------
+ARCH:
+- {'process': 'aircraft_routing_optimization'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 10
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare time allocation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+    -
+      - entity:
+        - distribution center
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+    -
+      - uses:
+        - maintenance execution -spare parts
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+* ARCH: Entity - airport, with relation: performs -> aircraft_routing_optimization
+* CONN: maintenance scheduling - measures -> Maintenance Cost
+* CONN: spare parts - isUsed -> maintenance execution
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': ['airport']}
+
+CONNECTIONS:
+- {'measures': ['maintenance scheduling - Maintenance Cost']}
+- {'performs': ['airport - aircraft_routing_optimization']}
+- {'isUsed': ['spare parts - maintenance execution']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 10)
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': ['airport']}
+
+CONNECTIONS:
+- {'performs': ['airport - aircraft_routing_optimization']}
+- {'isUsed': ['spare parts - maintenance execution']}
+
+CHARACTERISTICS:
+
+
+ITERATION 11
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare time allocation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+    -
+      - Entity:
+        - distribution center
+        - airport
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Relationship, Name: partnership, between Entity: distribution center and Entity: airport
+* Type: CONN, Relation: collaborates, between Entity: airport and Entity: distribution center
+* Type: CONN, Relation: measures, between Process: maintenance execution and Metric: Maintenance Cost
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'Relationship': ['distribution center - airport']}
+- {'collaborates': ['airport - distribution center']}
+- {'measures': ['maintenance execution - Maintenance Cost']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 11)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'measures': ['maintenance execution - Maintenance Cost']}
+
+CHARACTERISTICS:
+
+
+ITERATION 12
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare time allocation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+    -
+      - Entity:
+        - distribution center
+        - airport
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    -
+      - measures:
+        - maintenance execution - Maintenance Cost
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: Entity "Maintenance Team" with relation "performs" to "maintenance execution"
+* Type: CONN, relation "collaborates" between Entity "distribution center" and Entity "airport"
+* Type: ARCH, Relationship "partnership" between Entity "airport" and Entity "distribution center" with relation "evaluates_" to Metric "Parts Availability rate"
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': ['Maintenance Team']}
+
+CONNECTIONS:
+- {'performs': ['Maintenance Team - maintenance execution']}
+- {'collaborates': ['airport - distribution center']}
+- {'evaluates_': ['spare parts allocation - Parts Availability rate']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 12)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'evaluates_': ['spare parts allocation - Parts Availability rate']}
+
+CHARACTERISTICS:
+
+
+ITERATION 13
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare time allocation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+    -
+      - Entity:
+        - distribution center
+        - airport
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    -
+      - measures:
+        - maintenance execution - Maintenance Cost
+    -
+      - evaluates_:
+        - spare parts allocation - Parts Availability rate
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Relationship, Name: spare_parts_allocation, Relations: applies_to -> maintenance_execution, evaluates_ -> Parts Availability rate
+* Type: CONN, Relation: collaborates, Source: distribution_center, Destination: airport
+* Type: ARCH, Concept: Constraint, Name: spare_parts_availability, Relations: applies_to -> maintenance_execution, details: minimum spare parts required
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'collaborates': ['airport - distribution center']}
+- {'evaluates ': [' parts allocation - maintenance_execution']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 13)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'evaluates_': ['spare parts allocation - maintenance_execution']}
+
+CHARACTERISTICS:
+
+
+ITERATION 14
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare time allocation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+    -
+      - Entity:
+        - distribution center
+        - airport
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    -
+      - measures:
+        - maintenance execution - Maintenance Cost
+    -
+      - evaluates_:
+        - spare parts allocation - Parts Availability rate
+        - spare parts allocation - maintenance_execution
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Relationship, Name: spare_parts_allocation, relations: applies_to -> maintenance_execution, collaborates -> distribution_center
+* Type: CONN, Relation: uses, Source: aircraft_routing_optimization, Target: spare_parts
+* Type: ARCH, Concept: Constraint, Name: spare_parts_availability, relations: applies_to -> maintenance_execution, evaluates -> Parts Availability rate
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'constraint': 'spare_parts_availability'}
+
+CONNECTIONS:
+- {'uses': ['aircraft_routing_optimization - spare_parts ']}
+- {'applies_to  ': ['  spare_parts_availability - maintenance_execution']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 14)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 14)
+--------------------------------------------------------------------------------
+ARCH:
+- {'resource': 'Technician'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 15
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare time allocation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+        - technician
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+    -
+      - Entity:
+        - distribution center
+        - airport
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    -
+      - measures:
+        - maintenance execution - Maintenance Cost
+    -
+      - evaluates_:
+        - spare parts allocation - Parts Availability rate
+        - spare parts allocation - maintenance_execution
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise. 
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Entity, Name: supplier, relations: collaborates -> distribution center
+* Type: CONN, Relation: produces, Source: maintenance execution, Destination: spare parts
+* Type: ARCH, Concept: Metric, Name: Aircraft Downtime, relations: measures -> maintenance execution, evaluates_ -> aircraft_routing_optimization
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': 'supplier'}
+- {'Metric': 'Aircraft Downtime'}
+
+CONNECTIONS:
+- {'produces': [' maintenance execution - spare parts ']}
+- {'measures': [' maintenance execution - Aircraft Downtime']}
+- {'evaluates': [' aircraft_routing_optimization - Aircraft Downtime']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 15)
+--------------------------------------------------------------------------------
+ARCH:
+- {'Metric': 'Aircraft Downtime'}
+
+CONNECTIONS:
+- {'measures': [' maintenance execution - Aircraft Downtime']}
+- {'evaluates': [' aircraft_routing_optimization - Aircraft Downtime']}
+
+CHARACTERISTICS:
+
+
+ITERATION 16
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare time allocation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+        - technician
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+        - aircraft downtime
+    -
+      - Entity:
+        - distribution center
+        - airport
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    -
+      - measures:
+        - maintenance execution - Maintenance Cost
+        -  maintenance execution - Aircraft Downtime
+    -
+      - evaluates_:
+        - spare parts allocation - Parts Availability rate
+        - spare parts allocation - maintenance_execution
+        - aircraft_routing_optimization - Aircraft Downtime
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.  
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* ARCH: Entity - "regional office" 
+* CONN: information_flow - "maintenance_scheduling" - "spare_time_allocation"
+* CONN: information_flow - "aircraft_routing_optimization" - "maintenance_execution"
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': 'regional office'}
+
+CONNECTIONS:
+- {'information_flow': ['maintenance_scheduling', 'spare_time_allocation']}
+- {'information_flow': ['aircraft_routing_optimization', 'maintenance_execution']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 16)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'information_flow': ['aircraft_routing_optimization', 'maintenance_execution']}
+
+CHARACTERISTICS:
+
+
+ITERATION 17
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare time allocation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+        - technician
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+        - aircraft downtime
+    -
+      - Entity:
+        - distribution center
+        - airport
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+        - aircraft_routing_optimization
+        - maintenance_execution
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    -
+      - measures:
+        - maintenance execution - Maintenance Cost
+        -  maintenance execution - Aircraft Downtime
+    -
+      - evaluates_:
+        - spare parts allocation - Parts Availability rate
+        - spare parts allocation - maintenance_execution
+        - aircraft_routing_optimization - Aircraft Downtime
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Relationship, Name: spare_parts_allocation, Relations: involves -> maintenance_execution, evaluates_ -> Parts Availability rate
+* Type: CONN, Relation: uses, Source: aircraft_routing_optimization, Target: technician
+* Type: ARCH, Concept: Constraint, Name: maintenance_window, Relations: applies_to -> maintenance_execution, details: "maintenance can only be performed between 10pm and 5am"
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'applies_to': ['maintenance_window', 'maintenance_execution']}
+
+CHARACTERISTICS:
+- {'Constraint': 'maintenance_window'}
+
+
+ACCEPTED (ITERATION 17)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 17)
+--------------------------------------------------------------------------------
+ARCH:
+- {'Process': 'slot reservation'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 18
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare time allocation
+        - slot reservation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+        - technician
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+        - aircraft downtime
+    -
+      - Entity:
+        - distribution center
+        - airport
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+        - aircraft_routing_optimization
+        - maintenance_execution
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    -
+      - measures:
+        - maintenance execution - Maintenance Cost
+        -  maintenance execution - Aircraft Downtime
+    -
+      - evaluates_:
+        - spare parts allocation - Parts Availability rate
+        - spare parts allocation - maintenance_execution
+        - aircraft_routing_optimization - Aircraft Downtime
+    - (none)
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Relationship, Name: spare_parts_allocation, relations: involves -> maintenance_execution, evaluates_ -> Parts Availability rate
+* Type: CONN, Relation: uses, Source: aircraft_routing_optimization, Destination: technician
+* Type: ARCH, Concept: Constraint, Name: maintenance_window, relations: applies_to -> maintenance_execution, details: time constraints for maintenance execution
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'applies_to': ['maintenance_window', 'maintenance_execution']}
+- {'uses': ['aircraft_routing_optimization', 'technician']}
+- {'evaluates': ['maintenance_execution', 'Parts Availability rate']}
+
+CHARACTERISTICS:
+- {'Constraint': 'maintenance_window'}
+
+
+ACCEPTED (ITERATION 18)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'applies_to': ['maintenance_window', 'maintenance_execution']}
+- {'evaluates': ['maintenance_execution', 'Parts Availability rate']}
+
+CHARACTERISTICS:
+- {'Constraint': 'maintenance_window'}
+
+
+ITERATION 19
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare time allocation
+        - slot reservation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+        - technician
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+        - aircraft downtime
+    -
+      - Entity:
+        - distribution center
+        - airport
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+        - aircraft_routing_optimization
+        - maintenance_execution
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    -
+      - measures:
+        - maintenance execution - Maintenance Cost
+        -  maintenance execution - Aircraft Downtime
+    -
+      - evaluates_:
+        - spare parts allocation - Parts Availability rate
+        - spare parts allocation - maintenance_execution
+        - aircraft_routing_optimization - Aircraft Downtime
+        - maintenance_execution - Parts Availability rate
+    -
+      - evaluates:
+        - maintenance_execution
+        - Parts Availability rate
+    -
+      - Constraint:
+        - maintenance_window
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Relationship, Name: spare_parts_allocation, Relations: involves -> maintenance_execution, collaborates -> distribution_center
+* Type: CONN, Relation: uses, Source: aircraft_routing_optimization, Destination: technician
+* Type: ARCH, Concept: Constraint, Name: spare_parts_availability, Relations: applies_to -> maintenance_execution, applies_to -> spare_parts_allocation
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'applies_to': ['spare_parts_availability', 'maintenance_execution']}
+- {'uses': ['aircraft_routing_optimization', 'technician']}
+
+CHARACTERISTICS:
+- {'Constraint': 'spare_parts_availability'}
+
+
+ACCEPTED (ITERATION 19)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 19)
+--------------------------------------------------------------------------------
+ARCH:
+- {'Process': 'shipment planning'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 19)
+--------------------------------------------------------------------------------
+ARCH:
+- {'Process': 'shipment planning'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 20
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare time allocation
+        - slot reservation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+        - technician
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+        - aircraft downtime
+    -
+      - Entity:
+        - distribution center
+        - airport
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+        - aircraft_routing_optimization
+        - maintenance_execution
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    -
+      - measures:
+        - maintenance execution - Maintenance Cost
+        -  maintenance execution - Aircraft Downtime
+    -
+      - evaluates_:
+        - spare parts allocation - Parts Availability rate
+        - spare parts allocation - maintenance_execution
+        - aircraft_routing_optimization - Aircraft Downtime
+        - maintenance_execution - Parts Availability rate
+    -
+      - evaluates:
+        - maintenance_execution
+        - Parts Availability rate
+    -
+      - Constraint:
+        - maintenance_window
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise. 
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: CONN, Addition: maintenance forecasting - spare parts allocation (information_flow) 
+* Type: ARCH, Addition: Entity - airline 
+* Type: CONN, Addition: maintenance execution - maintenance_window (applies_to)
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': 'airline'}
+
+CONNECTIONS:
+- {'information_flow': ['maintenance forecasting - spare parts allocation']}
+- {'applies_to': [' maintenance execution - maintenance_window']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 20)
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': 'airline'}
+
+CONNECTIONS:
+- {'applies_to': [' maintenance execution - maintenance_window']}
+
+CHARACTERISTICS:
+
+
+ITERATION 20
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare time allocation
+        - slot reservation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+        - technician
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+        - aircraft downtime
+    -
+      - Entity:
+        - distribution center
+        - airport
+        - airline
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+        - aircraft_routing_optimization
+        - maintenance_execution
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    -
+      - measures:
+        - maintenance execution - Maintenance Cost
+        -  maintenance execution - Aircraft Downtime
+    -
+      - evaluates_:
+        - spare parts allocation - Parts Availability rate
+        - spare parts allocation - maintenance_execution
+        - aircraft_routing_optimization - Aircraft Downtime
+        - maintenance_execution - Parts Availability rate
+    -
+      - evaluates:
+        - maintenance_execution
+        - Parts Availability rate
+    -
+      - applies_to:
+        -  maintenance execution - maintenance_window
+    -
+      - Constraint:
+        - maintenance_window
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise. 
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: CONN, Relation: collaborates, Between: airline - distribution center
+* Type: CONN, Relation: uses, Between: maintenance scheduling - technician
+* Type: CONN, Relation: information_flow, Between: maintenance forecasting - spare time allocation
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'information_flow': ['maintenance forecasting - spare parts allocation']}
+- {'collaborates': ['airline - distribution center']}
+- {'uses': ['maintenance scheduling - technician']}
+
+CHARACTERISTICS:
+
+
+
+ACCEPTED (ITERATION 20)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 20)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'information_flow': ['spare parts allocation - shipment planning']}
+
+CHARACTERISTICS:
+
+
+ITERATION 21
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare time allocation
+        - slot reservation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+        - technician
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+        - aircraft downtime
+    -
+      - Entity:
+        - distribution center
+        - airport
+        - airline
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+        - aircraft_routing_optimization- maintenance_execution
+        - spare parts allocation - shipment planning
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    -
+      - measures:
+        - maintenance execution - Maintenance Cost
+        -  maintenance execution - Aircraft Downtime
+    -
+      - evaluates_:
+        - spare parts allocation - Parts Availability rate
+        - spare parts allocation - maintenance_execution
+        - aircraft_routing_optimization - Aircraft Downtime
+        - maintenance_execution - Parts Availability rate
+    -
+      - evaluates:
+        - maintenance_execution
+        - Parts Availability rate
+    -
+      - applies_to:
+        -  maintenance execution - maintenance_window
+    -
+      - Constraint:
+        - maintenance_window
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Relationship, Name: "technician allocation" to represent the allocation of technicians to maintenance tasks
+* Type: CONN, Relation: uses, Source: maintenance scheduling, Destination: spare parts to represent the use of spare parts in maintenance scheduling
+* Type: CONN, Relation: collaborates, Source: airline, Destination
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'uses': ['maintenance scheduling -  spare parts']}
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 21)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'constraint': 'capacity limitation'}
+
+
+ITERATION 22
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare time allocation
+        - slot reservation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+        - technician
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+        - aircraft downtime
+    -
+      - Entity:
+        - distribution center
+        - airport
+        - airline
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+        - aircraft_routing_optimization- maintenance_execution
+        - spare parts allocation - shipment planning
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    -
+      - measures:
+        - maintenance execution - Maintenance Cost
+        -  maintenance execution - Aircraft Downtime
+    -
+      - evaluates_:
+        - spare parts allocation - Parts Availability rate
+        - spare parts allocation - maintenance_execution
+        - aircraft_routing_optimization - Aircraft Downtime
+        - maintenance_execution - Parts Availability rate
+    -
+      - evaluates:
+        - maintenance_execution
+        - Parts Availability rate
+    -
+      - applies_to:
+        -  maintenance execution - maintenance_window
+    -
+      - Constraint:
+        - maintenance_window
+        - capacity limitation
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: ARCH, Concept: Relationship, Name: partnership, relations: collaborates -> Entity (airline, distribution center)
+* Type: CONN, Relation: uses, Source: Process (maintenance scheduling), Destination: Resource (technician)
+* Type: ARCH, Concept: Metric, Name: Technician Utilization Rate, relations
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Metric': 'Technician Utilization Rate'}
+
+CONNECTIONS:
+- {'collaborates': ['airline', 'distribution center']}
+- {'uses': ['maintenance scheduling -  technician']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 22)
+--------------------------------------------------------------------------------
+ARCH:
+- {'Metric': 'Technician Utilization Rate'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 23
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare time allocation
+        - slot reservation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+        - technician
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+        - aircraft downtime
+        - Technician Utilization Rate
+    -
+      - Entity:
+        - distribution center
+        - airport
+        - airline
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+        - aircraft_routing_optimization- maintenance_execution
+        - spare parts allocation - shipment planning
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    -
+      - measures:
+        - maintenance execution - Maintenance Cost
+        -  maintenance execution - Aircraft Downtime
+    -
+      - evaluates_:
+        - spare parts allocation - Parts Availability rate
+        - spare parts allocation - maintenance_execution
+        - aircraft_routing_optimization - Aircraft Downtime
+        - maintenance_execution - Parts Availability rate
+    -
+      - evaluates:
+        - maintenance_execution
+        - Parts Availability rate
+    -
+      - applies_to:
+        -  maintenance execution - maintenance_window
+    -
+      - Constraint:
+        - maintenance_window
+        - capacity limitation
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* ARCH: Entity "maintenance team" to represent a group of technicians
+* CONN: Relationship "collaborates" between Entity "airline" and Entity "distribution center" to facilitate spare parts allocation
+* CONN: Process "maintenance forecasting" uses Resource "historical maintenance data"
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': 'maintenance team'}
+- {'Resource': 'historical maintenance data'}
+
+CONNECTIONS:
+- {'collaborates': ['airline', 'distribution center']}
+- {'uses': ['maintenance scheduling -  historical maintenance data']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 23)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 23)
+--------------------------------------------------------------------------------
+ARCH:
+- {'Resource': 'aircraft'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 24
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare part allocation
+        - shipment planning
+        - slot reservation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+        - technician
+        - aircraft
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+        - aircraft downtime
+        - Technician Utilization Rate
+    -
+      - Entity:
+        - distribution center
+        - airport
+        - airline
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+        - aircraft_routing_optimization- maintenance_execution
+        - spare parts allocation - shipment planning
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    -
+      - measures:
+        - maintenance execution - Maintenance Cost
+        -  maintenance execution - Aircraft Downtime
+    -
+      - evaluates_:
+        - spare parts allocation - Parts Availability rate
+        - spare parts allocation - maintenance_execution
+        - aircraft_routing_optimization - Aircraft Downtime
+        - maintenance_execution - Parts Availability rate
+    -
+      - evaluates:
+        - maintenance_execution
+        - Parts Availability rate
+    -
+      - applies_to:
+        -  maintenance execution - maintenance_window
+    -
+      - Constraint:
+        - maintenance_window
+        - capacity limitation
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* Type: Entity "maintenance team" with relation "performs" to process "maintenance execution"
+* Type: CONN, relation "uses" between process "aircraft_routing_optimization" and resource "technician"
+* Type: CHAR, relation "measures" between process "shipment planning" and Metric "Maintenance Cost"
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'Entity': 'maintenance team'}
+
+CONNECTIONS:
+- {'uses': ['aircraft_routing_optimization', 'technician']}
+- {'measures': ['shipment planning', 'Maintenance Cost']}
+- {'performs': ['maintenance team', 'maintenance execution']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 24)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'measures': ['shipment planning', 'Maintenance Cost']}
+
+CHARACTERISTICS:
+
+
+ITERATION 25
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare part allocation
+        - shipment planning
+        - slot reservation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+        - technician
+        - aircraft
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+        - aircraft downtime
+        - Technician Utilization Rate
+    -
+      - Entity:
+        - distribution center
+        - airport
+        - airline
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+        - aircraft_routing_optimization- maintenance_execution
+        - spare parts allocation - shipment planning
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    -
+      - measures:
+        - maintenance execution - Maintenance Cost
+        -  maintenance execution - Aircraft Downtime
+        - shipment planning - Maintenance Cost
+    -
+      - evaluates_:
+        - spare parts allocation - Parts Availability rate
+        - spare parts allocation - maintenance_execution
+        - aircraft_routing_optimization - Aircraft Downtime
+        - maintenance_execution - Parts Availability rate
+    -
+      - evaluates:
+        - maintenance_execution
+        - Parts Availability rate
+    -
+      - applies_to:
+        -  maintenance execution - maintenance_window
+    -
+      - Constraint:
+        - maintenance_window
+        - capacity limitation
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.  different than this : 
+...
+Here are three proposed additions to extend the model:
+* ARCH: Add a new Entity "maintenance_team" to represent a group of technicians.
+* CONN: Add a "collaborates" relationship between "airline" and "distribution_center" to represent their interaction in spare parts allocation.
+* CONN: Add a "uses" relationship between "maintenance_execution" and "technician" to represent the resource utilization in maintenance activities.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* ARCH: Add a new Resource "maintenance_equipment" to represent specialized tools used in maintenance activities.
+* CONN: Add a "measures" relationship between "shipment_planning" and "Technician Utilization Rate" to track the impact of shipment planning on technician workload.
+* CONN: Add a "produces" relationship between "spare_part_allocation" and "maintenance_execution" to represent the output of allocated spare parts in the maintenance execution process.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {' Resource': ' maintenance_equipment'}
+
+CONNECTIONS:
+- {'uses': ['aircraft_routing_optimization - technician']}
+- {'measures': ['shipment planning - Technician Utilization Rate']}
+- {'produces': ['spare_part_allocation - maintenance_execution']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 25)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 25)
+--------------------------------------------------------------------------------
+ARCH:
+- {'Resource': 'Hangar slot'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 26
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial SCM dsl for the scenario.
+
+Scenario: Aircraft maintenance routing system
+
+Ontology annotations (to explain the semantics of each concept element better ):
+SCM ontology mapping (use exactly these):
+- Actor -> Entity
+- Item -> Resource
+- Interaction -> relationship, InformationFlow, MaterialFlow
+- Property -> Metric
+
+
+Metamodel (allowed element types, relations — follow strictly):
+SCM metamodel:
+
+Types  and their fields:
+
+- Flow:
+  attributes: name, type, source, destination, frequency, volume(NUMBER)
+
+- Resource:
+  attributes: name, type, quantity(NUMBER), cost(NUMBER)
+  relations:
+    - isUsed[*] -> Process
+
+- Process:
+  attributes: name, id, duration, output
+  relations:
+    - measures[*] -> Metric
+    - uses[*] -> Resource
+    - produces[*] -> Resource (containment)
+    - involves[*] -> Relationship
+    - have[*] -> Constraint
+
+- Entity:
+  attributes: name, id, location, role
+  relations:
+    - measures[*] -> Metric (containment)
+    - collaborates[*] -> Relationship
+    - performs -> Process
+
+- Metric:
+  attributes: name, type, value(NUMBER), target(NUMBER)
+  relations:
+    - evaluates_ -> Relationship
+    - evaluates -> Process
+
+- Constraint:
+  attributes: name, type, details
+  relations:
+    - applies_to[*] (required) -> Process
+
+- Relationship:
+  attributes: name, type, terms, startDate, endDate
+
+- Ecosystem:
+  attributes: name
+  relations (all containment, many):
+    - entitys[*] -> Entity
+    - resources[*] -> Resource
+    - relationships[*] -> Relationship
+    - constraints[*] -> Constraint
+    - metrics[*] -> Metric
+    - flows[*] -> Flow
+    - processs[*] -> Process
+
+Subtypes of Flow:
+- MaterialFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+- InformationFlow extends Flow:
+  relations:
+    - targetProcess (required) -> Process
+    - sourceProcess[*] -> Process
+
+Output rules:
+- Only propose additions that use the concepts listed above.
+- When proposing a relation, use the exact relation name from the metamodel (e.g., performs, uses, measures, collaborates, applies_to, flows, entitys, etc.).
+- no need to generate attributes of the concepts, just the concept names and their relationships.
+
+
+
+Current partial model:
+Elements: 
+     -
+      - process:
+        - maintenance forecasting
+        - maintenance scheduling
+        - aircraft_routing_optimization
+        - spare part allocation
+        - shipment planning
+        - slot reservation
+        - maintenance execution
+    -
+      - resource:
+        - spare parts
+        - technician
+        - aircraft
+        - hangar slot
+    -
+      - Metric:
+        - Maintenance Cost
+        - Parts Availability rate
+        - aircraft downtime
+        - Technician Utilization Rate
+    -
+      - Entity:
+        - distribution center
+        - airport
+        - airline
+    -
+      - information_flow:
+        - maintenance_forecasting - maintenance_scheduling
+        - aircraft_routing_optimization- maintenance_execution
+        - spare parts allocation - shipment planning
+    -
+      - uses:
+        - maintenance execution -spare parts
+    -
+      - performs:
+        - airport - aircraft_routing_optimization
+    -
+      - isUsed:
+        - spare parts - maintenance execution
+    -
+      - measures:
+        - maintenance execution - Maintenance Cost
+        -  maintenance execution - Aircraft Downtime
+        - shipment planning - Maintenance Cost
+    -
+      - evaluates_:
+        - spare parts allocation - Parts Availability rate
+        - spare parts allocation - maintenance_execution
+        - aircraft_routing_optimization - Aircraft Downtime
+        - maintenance_execution - Parts Availability rate
+    -
+      - evaluates:
+        - maintenance_execution
+        - Parts Availability rate
+    -
+      - applies_to:
+        -  maintenance execution - maintenance_window
+    -
+      - Constraint:
+        - maintenance_window
+        - capacity limitation
+
+Task:
+Propose up to 3 additions to extend the model. An addition could be:
+- type: ARCH of the concepts of the metamodel  or CONN that is represented as an edge , or CHAR like a property or constraint.
+
+Constraints:
+- Only propose additions that are valid according to the metamodel.
+- Do not repeat elements that already exist in the partial model.
+
+Write as a bullet list. Be concise.
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+* ARCH: Add a new Entity "Maintenance Team" to represent a group of technicians.
+* CONN: Add a "collaborates" relation between Entity "airline" and Entity "distribution center" to represent their interaction.
+* CONN: Add a "uses" relation between Process "maintenance scheduling" and Resource "hangar slot" to represent the allocation of hangar slots for maintenance scheduling.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {' Entity': 'Maintenance Team'}
+
+CONNECTIONS:
+- {'uses': ['maintenance scheduling - hangar slot']}
+- {'collaborates': ['airline - distribution center']}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 26)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'uses': ['maintenance scheduling - hangar slot']}
+
+CHARACTERISTICS:

@@ -137,3 +137,166 @@
 - Overlap(A,M) = 0
 - |A ∪ M| = 31
 - AI_Contribution = 9/31 = 0.2903 = 29.0%
+
+
+### Scenario: Aircraft maintenance routing system
+- CONFIG: C-Full
+- Log: 20260218-150405
+- Model: llama3.3-70b
+- Temperature: 0
+
+# Results of what is generated (from all “MANUAL CLASSIFICATION” sections)
+
+### ARCH (concepts)
+# unique shown = 18
+# Total generated occurrences = 26
+- {'Entity': ['MaintenanceTeam']} — 6
+- {'Entity': 'maintenance team'} — 2
+- {'Entity': ['Maintenance Team']} — 2
+- {'Relationship': ['distribution center - airport']} — 2
+- {' Entity': 'Maintenance Team'} — 1
+- {' Resource': ' maintenance_equipment'} — 1
+- {'Entity': 'airline'} — 1
+- {'Entity': 'regional office'} — 1
+- {'Entity': 'supplier'} — 1
+- {'Entity': ['Aircraft  Maintenance Team']} — 1
+- {'Entity': ['Maintenance Team']} — 1
+- {'Entity': ['airport']} — 1
+- {'Entity': ['MaintenanceTeam']} — 1
+- {'Metric': 'Aircraft Downtime'} — 1
+- {'Metric': 'Technician Utilization Rate'} — 1
+- {'Metric': ['Maintenance Cost']} — 1
+- {'Resource': ['Maintenance Equipment']} — 1
+- {'Resource': ['SpareParts']} — 1
+
+### CONNECTIONS (relations)
+# unique shown = 50
+# Total generated occurrences = 75
+- {'collaborates': ['airport - distribution center']} — 3
+- {'uses': ['aircraft_routing_optimization', 'technician']} — 3
+- {'applies_to': ['Spare Part Availability -  spare time allocation']} — 2
+- {'applies_to': ['maintenance_window', 'maintenance_execution']} — 2
+- {'collaborates': ['airline - distribution center']} — 2
+- {'evaluates': ['maintenance_execution', 'Parts Availability rate']} — 2
+- {'information_flow': ['maintenance forecasting - spare parts allocation']} — 2
+- {'isUsed': ['Maintenance Equipment - maintenance forecasting']} — 1
+- {'isUsed': ['Maintenance Equipment - maintenance scheduling']} — 1
+- {'isUsed': ['Maintenance Equipment - spare time allocation']} — 1
+- {'isUsed': ['spare parts - maintenance execution']} — 1
+- {'measures': [' maintenance execution - Aircraft Downtime']} — 1
+- {'measures': ['maintenance forecasting process -  Forecasting Accuracy']} — 1
+- {'measures': ['maintenance scheduling - Maintenance Cost']} — 1
+- {'measures': ['maintenance execution - Aircraft Downtime']} — 1
+- {'measures': ['maintenance execution - Maintenance Cost']} — 1
+- {'measures': ['shipment planning', 'Maintenance Cost']} — 1
+- {'measures': ['shipment planning - Technician Utilization Rate']} — 1
+- {'performs': [' Maintenance Team - maintenance_scheduling']} — 1
+- {'performs': ['Maintenance Team -  maintenance execution']} — 1
+- {'performs': ['MaintenanceTeam - maintenance forcasting ']} — 1
+- {'performs': ['airport - aircraft_routing_optimization']} — 1
+- {'performs': ['maintenance team', 'maintenance execution']} — 1
+- {'produces': [' maintenance execution - spare parts ']} — 1
+- {'produces': ['spare_part_allocation - maintenance_execution']} — 1
+- {'uses': [' maintenance execution - spare parts ']} — 1
+- {'uses': ['Maintenance Team - SpareParts']} — 1
+- {'uses': ['Maintenance forcasting - SpareParts']} — 1
+- {'uses': ['aircraft_routing_optimization - spare_parts ']} — 1
+- {'uses': ['maintenance execution -spare parts']} — 1
+- {'uses': ['maintenance forcasting - SpareParts']} — 1
+- {'uses': ['maintenance scheduling -  historical maintenance data']} — 1
+- {'uses': ['maintenance scheduling -  spare parts']} — 1
+- {'uses': ['maintenance scheduling -  technician']} — 1
+- {'uses': ['maintenance scheduling - hangar slot']} — 1
+- ... (the remaining 15 unique relations each appear once)
+
+### CHARACTERISTICS (constraints)
+# unique shown = 7
+# Total generated occurrences = 9
+- {'Constraint': 'maintenance_window'} — 2
+- {'Constraint': ['Availability']} — 2
+- {'Constraint': 'spare_parts_availability'} — 1
+- {'Constraint': ['Regulatory Requirements']} — 1
+- {'Constraint': ['Spare Part Availability']} — 1
+- {'Constraint': ['SparePartsAvailability']} — 1
+- {'constraint': 'spare_parts_availability'} — 1
+
+
+# AI ACCEPTED (from all “ACCEPTED (ITERATION …)” sections) — unique list
+
+### ARCH (concepts)
+- {'Entity': 'airline'}
+- {'Entity': ['airport']}
+- {'Metric': 'Aircraft Downtime'}
+- {'Metric': 'Technician Utilization Rate'}
+- {'Metric': ['Maintenance Cost']}
+- {'resource': 'spare parts'}
+
+### CONNECTIONS (relations)
+- {'applies_to': [' maintenance execution - maintenance_window']}
+- {'applies_to': ['maintenance_window', 'maintenance_execution']}
+- {'evaluates': [' aircraft_routing_optimization - Aircraft Downtime']}
+- {'evaluates': ['maintenance_execution', 'Parts Availability rate']}
+- {'evaluates_': ['spare parts allocation - Parts Availability rate']}
+- {'evaluates_': ['spare parts allocation - maintenance_execution']}
+- {'information_flow': ['aircraft_routing_optimization', 'maintenance_execution']}
+- {'isUsed': ['spare parts - maintenance execution']}
+- {'measures': [' maintenance execution - Aircraft Downtime']}
+- {'measures': ['maintenance execution - Maintenance Cost']}
+- {'measures': ['shipment planning', 'Maintenance Cost']}
+- {'performs': ['airport - aircraft_routing_optimization']}
+- {'uses': ['maintenance execution -spare parts']}
+- {'uses': ['maintenance scheduling - hangar slot']}
+
+### CHARACTERISTICS (constraints)
+- {'Constraint': 'maintenance_window'}
+
+
+## ADDED ELEMENTS MANUALLY (from all “ADDED ELEMENTS MANUALLY (ITERATION …)” sections) — unique list
+
+### ARCH (concepts)
+- {'process': ['maintenance_scheduling']}
+- {'process': ['spare time allocation']}
+- {'process': 'maintenance execution'}
+- {'process': 'aircraft_routing_optimization'}
+- {'Process': 'slot reservation'}
+- {'Process': 'shipment planning'}
+- {'Metric': [' Parts Availability rate']}
+- {'Resource': 'aircraft'}
+- {'resource': 'Technician'}
+- {'Resource': 'Hangar slot'}
+
+### CONNECTIONS (relations)
+- {'information_flow': ['maintenance_forecasting - maintenance_scheduling']}
+- {'information_flow': ['spare parts allocation - shipment planning']}
+
+### CHARACTERISTICS (constraints)
+- {'constraint': 'capacity limitation'}
+
+
+### Metrics (binary acceptance; denominator = total suggestion occurrences)
+- Candidates_ARCH = 26
+- Candidates_CONN = 75
+- Candidates_CHAR = 9
+- Candidates_ALL  = 110
+
+- Unique_ARCH = 18
+- Unique_CONN = 50
+- Unique_CHAR = 7
+- Unique_ALL  = 75
+
+- Redundancy_% = (1 - 75/110) * 100 = 31.8%
+
+- Acc_ARCH = 6/26  = 0.2308 = 23.1%
+- Acc_CONN = 14/75 = 0.1867 = 18.7%
+- Acc_CHAR = 1/9   = 0.1111 = 11.1%
+- Acc_ALL  = (6 + 14 + 1) / 110 = 21/110 = 0.1909 = 19.1%
+
+- Contr_ALL = 0/110 = 0.0%
+- Irrel_ALL = 1 - (21/110) = 89/110 = 0.8091 = 80.9%
+
+#### AI contribution (accepted vs final model = accepted ∪ manual)
+- |A| = 21
+- |M| = 13
+- Overlap(A,M) = 0
+- |A ∪ M| = 34
+- AI_Contribution = 21/34 = 0.6176 = 61.8%
