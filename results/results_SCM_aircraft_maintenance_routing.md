@@ -138,6 +138,7 @@
 - |A ∪ M| = 31
 - AI_Contribution = 9/31 = 0.2903 = 29.0%
 
+- 
 
 ### Scenario: Aircraft maintenance routing system
 - CONFIG: C-Full
