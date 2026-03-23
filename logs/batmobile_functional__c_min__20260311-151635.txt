@@ -1,0 +1,3945 @@
+EXPERIMENT LOG
+======================================================================
+SCENARIO: Batmobile functional
+CONFIG: C-Min
+MODEL: llama3.3-70b
+TEMPERATURE: 0
+CREATED_AT: 20260311-151635
+======================================================================
+
+
+
+ITERATION 1
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+    - (none)
+    - (none)
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+To extend the model, the following additions are proposed:
+
+* PartDefinition: engine (characteristic of the chassis)
+* Interface: powerTransmission (relation between chassis and engine)
+* PartDefinition: wheels (architectural element connected to the chassis)
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'engine'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+
+ACCEPTED (ITERATION 1)
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'engine'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {''}
+
+
+ITERATION 2
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - engine
+      - chassis
+    - (none)
+    - (none)
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+To extend the model, the following additions are proposed:
+* PartDefinition: transmission (characteristic of the engine)
+* Interface: engine-chassis connection (relation between engine and chassis)
+* PartDefinition: wheels (architectural element related to the chassis)
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'transmission'}
+- {'PartDefinition': 'wheels'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 2)
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'wheels'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {''}
+
+
+ITERATION 3
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - engine
+      - chassis
+      - wheels
+    - (none)
+    - (none)
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+To extend the model, the following additions are proposed:
+* PartDefinition: transmission (characteristic) - to connect with the engine and enhance the vehicle's functionality.
+* Interface: engineInterface (architectural element) - to define how the engine interacts with other parts, such as the transmission and chassis.
+* Port: wheelPort (characteristic) - to specify how the wheels are connected to the chassis, enabling the vehicle's mobility.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'transmission'}
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+- {'PortUsage': 'wheelPort '}
+
+
+ACCEPTED (ITERATION 3)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {''}
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 3)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': {'chassis'}}
+
+
+ITERATION 4
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - engine
+      - wheels
+    - PartUsage:
+      - chassis
+    - (none)
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* PartUsage: engine (characteristic of the Batmobile's functionality, relating to the existing PartDefinition: engine)
+* PartUsage: wheels (characteristic of the Batmobile's mobility, relating to the existing PartDefinition: wheels)
+* Connector: chassis-engine (relation between existing PartDefinition: chassis and PartDefinition: engine, representing the architectural connection between them)
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+- {'PartUsage': 'engine '}
+- {'PartUsage': 'wheels  '}
+
+
+ACCEPTED (ITERATION 4)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'engine '}
+
+
+ACCEPTED (ITERATION 5)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'wheels  '}
+
+
+ITERATION 6
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - engine
+      - wheels
+    - PartUsage:
+      - chassis
+      - engine
+      - wheels
+    - (none)
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+To extend the model, the following additions are proposed:
+* PartDefinition: transmission (characteristic) - to complement the engine and enhance the vehicle's functionality.
+* Connector: wheel-hub (architectural element) - to link the wheels to the chassis, ensuring structural integrity.
+* Interface: engine-control (relation) - to define how the engine interacts with other components, such as the transmission and chassis.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'transmission'}
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 6)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 6)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': {'frame'}}
+
+
+ITERATION 7
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - engine
+      - wheels
+    - PartUsage:
+      - chassis
+      - engine
+      - frame
+      - wheels
+    - (none)
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+To extend the model, the following additions are proposed:
+* PartDefinition: transmission (characteristic) - to complement the existing engine and wheels.
+* Connector: wheel-hub (architectural element) - to link the wheels to the chassis or frame.
+* Port: engine-mount (characteristic) - to define how the engine is attached to the chassis.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'transmission'}
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 7)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 7)
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': {'axle'}}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 8
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - engine
+      - axle
+      - wheels
+    - PartUsage:
+      - chassis
+      - engine
+      - frame
+      - wheels
+    - (none)
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+To extend the model, the following additions are proposed:
+* PartDefinition: transmission (characteristic) - to complement the engine and axle.
+* Connector: wheel-hub (architectural element) - to link wheels to the axle.
+* PartUsage: suspension (characteristic) - to relate to the chassis and wheels, enhancing the model's completeness regarding the Batmobile's functional aspects.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'transmission'}
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+- {'PartUsage': 'suspension '}
+
+
+ACCEPTED (ITERATION 8)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 8)
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': {'FuelTank'}}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 9
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - engine
+      - FuelTank
+      - wheels
+      - chassis
+      - axle
+    - PartUsage:
+      - chassis
+      - engine
+      - frame
+      - wheels
+    - (none)
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+To extend the model, the following additions are proposed:
+* PartDefinition: transmission (characteristic) - to complement the engine and wheels, enhancing the vehicle's functionality.
+* Connector: axle-to-wheel (relation) - connecting the axle to the wheels, ensuring structural integrity and mobility.
+* PartUsage: fuelSystem (architectural element) - incorporating the FuelTank into a broader system, including pipes, pumps, and fuel injectors, to manage fuel distribution.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'transmission'}
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+- {'PartUsage': 'fuelSystem  '}
+
+
+ACCEPTED (ITERATION 9)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'fuelSystem  '}
+
+
+ITERATION 10
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - engine
+      - FuelTank
+      - wheels
+      - chassis
+      - axle
+    - PartUsage:
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - chassis
+    - (none)
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+To extend the model, the following additions are proposed:
+
+* PartDefinition: transmission (characteristic) - to complement the engine and enhance the vehicle's functionality.
+* Connector: axle-to-wheel (relation) - to establish a connection between the axle and wheels, ensuring proper mechanical linkage.
+* PartUsage: suspension (architectural element) - to provide a crucial component for the vehicle's stability and comfort, potentially interacting with the chassis and wheels.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'transmission'}
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+- {'PartUsage': 'suspension   '}
+
+
+ACCEPTED (ITERATION 10)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 10)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'RequirementDefinition': {'CrewSafety'}}
+
+
+ITERATION 11
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - engine
+      - FuelTank
+      - wheels
+      - chassis
+      - axle
+    - PartUsage:
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - chassis
+    - RequirementDefinition:
+      - CrewSafety
+    - (none)
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* RequirementDefinition: CrashTest (characteristic) - to further define the CrewSafety requirement
+* PartDefinition: Battery (architectural element) - to complement the existing engine and FuelTank
+* Connector: EngineToAxle (relation) - to link the engine to the axle, similar to how the wheels are connected to the chassis and axle
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'Battery '}
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'CrashTest'}
+
+
+ACCEPTED (ITERATION 11)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 11)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'RequirementUsage': {'HighSpeed'}}
+
+
+ITERATION 12
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - engine
+      - FuelTank
+      - wheels
+      - chassis
+      - axle
+    - PartUsage:
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - chassis
+    - RequirementDefinition:
+      - CrewSafety
+    - RequirementUsage:
+      - HighSpeed
+    - (none)
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* PartDefinition: Transmission (characteristic of the Batmobile's powertrain)
+* RequirementDefinition: HandlingStability (relation to HighSpeed requirement)
+* Connector: EngineToTransmission (architectural element connecting engine and transmission parts)
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'Transmission  '}
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'HandlingStability '}
+
+
+ACCEPTED (ITERATION 12)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 12)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': {'sensors'}}
+
+
+ITERATION 13
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - engine
+      - FuelTank
+      - wheels
+      - chassis
+      - axle
+    - PartUsage:
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - chassis
+      - sensors
+    - RequirementDefinition:
+      - CrewSafety
+    - RequirementUsage:
+      - HighSpeed
+    - (none)
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* PartDefinition: Battery (characteristic) - to complement the existing FuelTank and engine
+* RequirementDefinition: Navigation (architectural element) - to relate to the existing sensors and HighSpeed requirement
+* InterfaceDefinition: EngineControl (relation) - to connect the engine PartDefinition with the existing sensors and HighSpeed requirement
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'Battery'}
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'Navigation  '}
+
+
+ACCEPTED (ITERATION 13)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'Navigation  '}
+
+
+ITERATION 14
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - engine
+      - FuelTank
+      - wheels
+      - chassis
+      - axle
+    - PartUsage:
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - chassis
+      - sensors
+    - RequirementDefinition:
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+    - (none)
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **PartDefinition: Battery** (characteristic) - to complement the existing FuelTank and engine, considering the Batmobile's potential for electric or hybrid functionality.
+* **RequirementDefinition: Stealth** (architectural element) - to align with the Batmobile's typical requirements, in addition to CrewSafety and Navigation, and potentially influencing the design of sensors and other components.
+* **InterfaceDefinition: SensorInterface** (relation) - to connect the sensors PartUsage to other elements, such as the chassis or axle, and facilitate the flow of data for Navigation and other requirements.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'Battery'}
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'Stealth '}
+
+
+ACCEPTED (ITERATION 14)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 14)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'PortDefinition': {'PowerPort'}}
+
+CHARACTERISTICS:
+
+
+ITERATION 15
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - engine
+      - FuelTank
+      - wheels
+      - chassis
+      - axle
+    - PartUsage:
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - chassis
+      - sensors
+    - RequirementDefinition:
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+    - PortDefinition:
+      - PowerPort
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* InterfaceDefinition: SensorInterface (characteristic of sensors, relation to PortDefinition)
+* RequirementDefinition: FuelEfficiency (relation to FuelTank and engine)
+* ConnectorDefinition: AxleConnection (architectural element, relation to axle and wheels)
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'FuelEfficiency  '}
+
+
+ACCEPTED (ITERATION 15)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 15)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'PortUsage': {'engine.powerOu'}}
+
+CHARACTERISTICS:
+
+
+ITERATION 16
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - engine
+      - FuelTank
+      - wheels
+      - chassis
+      - axle
+    - PartUsage:
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - chassis
+      - sensors
+    - RequirementDefinition:
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+    - PortDefinition:
+      - PowerPort
+    - PortUsage:
+      - engine.powerOut
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **PartDefinition: Battery** (characteristic: component) to complement the existing FuelTank and engine, considering the Batmobile's potential for hybrid or electric functionality.
+* **ConnectorDefinition: AxleConnection** (architectural element: connection) to link the axle and wheels, enhancing the model's representation of the vehicle's mechanical structure.
+* **RequirementDefinition: Stealth** (characteristic: performance requirement) to align with the Batmobile's fictional requirements, potentially influencing the design of sensors, engine, and other components to minimize detection.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'Battery'}
+
+CONNECTIONS:
+- {}
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'Stealth  '}
+
+
+ACCEPTED (ITERATION 16)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 16)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'PortUsage': {'engine..controlIn'}}
+
+CHARACTERISTICS:
+
+
+ITERATION 17
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - engine
+      - FuelTank
+      - wheels
+      - chassis
+      - axle
+    - PartUsage:
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - chassis
+      - sensors
+    - RequirementDefinition:
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+    - PortDefinition:
+      - PowerPort
+    - PortUsage:
+      - engine.powerOut
+      - engine.controlIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **PartDefinition: Battery** (characteristic: component) to complement the existing FuelTank and engine, considering the Batmobile's potential for electric or hybrid functionality.
+* **RequirementDefinition: Stealth** (relation: constraint) to align with the Navigation requirement, as stealth capabilities might be essential for the Batmobile's high-speed operations.
+* **PortDefinition: SensorPort** (architectural element: interface) to connect with the existing sensors PartUsage, enabling data exchange and integration with other systems, such as the Navigation requirement.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'Battery'}
+
+CONNECTIONS:
+- {'PortDefinition': 'SensorPort'}
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'Stealth  '}
+
+
+ACCEPTED (ITERATION 17)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 17)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'PortDefinition': {'DataPort'}}
+
+CHARACTERISTICS:
+
+
+ITERATION 18
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - engine
+      - FuelTank
+      - wheels
+      - chassis
+      - axle
+    - PartUsage:
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - chassis
+      - sensors
+    - RequirementDefinition:
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+    - PortDefinition:
+      - PowerPort
+      - DataPort
+    - PortUsage:
+      - engine.powerOut
+      - engine.controlIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* InterfaceDefinition: SensorInterface (characteristic of sensors, relation to DataPort)
+* RequirementDefinition: FuelEfficiency (relation to FuelTank and engine)
+* Connector: engine.axleConnection (architectural element, relation to engine and axle, using PortDefinition: PowerPort)
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'FuelEfficiency   '}
+
+
+ACCEPTED (ITERATION 18)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 18)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'PortDefinition': {'FuelPort'}}
+
+CHARACTERISTICS:
+
+
+ITERATION 19
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - engine
+      - FuelTank
+      - wheels
+      - chassis
+      - axle
+    - PartUsage:
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - chassis
+      - sensors
+    - RequirementDefinition:
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+    - PortUsage:
+      - engine.powerOut
+      - engine.controlIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **PartDefinition: Battery** (characteristic: component) to complement the existing FuelTank and provide an alternative power source.
+* **RequirementDefinition: Communication** (relation: constraint) to link with the existing DataPort and Navigation requirement, ensuring the Batmobile can transmit and receive critical information.
+* **PortDefinition: SensorPort** (architectural element: interface) to connect the sensors (already mentioned in PartUsage) with the DataPort, enabling the flow of sensor data for Navigation and other requirements.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'Battery'}
+
+CONNECTIONS:
+- {'PortDefinition': 'SensorPort'}
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'Communication   '}
+
+
+ACCEPTED (ITERATION 19)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 19)
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': {'Asset'}}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 20
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - engine
+      - Asset
+      - FuelTank
+      - wheels
+      - chassis
+      - axle
+    - PartUsage:
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - chassis
+      - sensors
+    - RequirementDefinition:
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+    - PortUsage:
+      - engine.powerOut
+      - engine.controlIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **PartDefinition: Battery** (characteristic: component) to complement the existing FuelTank and provide an alternative power source.
+* **RequirementDefinition: Stealth** (relation: constraint) to define a new requirement that interacts with the existing Navigation and CrewSafety requirements.
+* **PortDefinition: SensorPort** (architectural element: interface) to connect the sensors (already mentioned in PartUsage) with the DataPort, enabling data exchange and further integrating the Batmobile's systems.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'Battery'}
+
+CONNECTIONS:
+- {'PortDefinition': 'SensorPort'}
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'Stealth   '}
+
+
+ACCEPTED (ITERATION 20)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 20)
+--------------------------------------------------------------------------------
+ARCH:
+
+
+CONNECTIONS:
+- {'PortDefinition': 'ControlPort'}
+
+CHARACTERISTICS:
+
+
+ITERATION 21
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - engine
+      - Asset
+      - FuelTank
+      - wheels
+      - chassis
+      - axle
+    - PartUsage:
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - chassis
+      - sensors
+    - RequirementDefinition:
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - engine.powerOut
+      - engine.controlIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **PartDefinition: Battery** (characteristic: component) to complement the existing FuelTank and provide an alternative power source.
+* **RequirementDefinition: Communication** (relation: dependency) to link with the existing Navigation requirement and the DataPort, ensuring seamless data exchange.
+* **Connector: engine.fuelIn** (architectural element: connection) to link the engine with the FuelTank, mirroring the existing engine.powerOut and engine.controlIn connections.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'Battery'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'Communication   '}
+
+
+ACCEPTED (ITERATION 21)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 21)
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': {'Frame'}}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 22
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - engine
+      - Asset
+      - FuelTank
+      - wheels
+      - chassis
+      - Frame
+      - axle
+    - PartUsage:
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - chassis
+      - sensors
+    - RequirementDefinition:
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - engine.powerOut
+      - engine.controlIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: CollisionAvoidance (characteristic: functional requirement) - to ensure the Batmobile's safety features are modeled.
+* **PartDefinition**: Battery (architectural element: component) - to complement the existing FuelTank and provide an alternative power source.
+* **Connector**: engine.fuelIn (relation: connection between engine and FuelTank) - to link the engine's fuel input to the FuelTank, mirroring the existing engine.powerOut and engine.controlIn connections.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'Battery'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'CollisionAvoidance    '}
+
+
+ACCEPTED (ITERATION 22)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 22)
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': {'Body'}}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 23
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - chassis
+      - sensors
+    - RequirementDefinition:
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - engine.powerOut
+      - engine.controlIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* InterfaceDefinition: SensorInterface (characteristic of sensors, related to PortDefinition and PortUsage)
+* RequirementDefinition: FuelEfficiency (relation to FuelTank and engine, characteristic of vehicle performance)
+* ConnectionDefinition: engineToFuelTank (architectural element, relation between engine and FuelTank, using PortDefinition and PortUsage)
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'FuelEfficiency     '}
+
+
+ACCEPTED (ITERATION 23)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 23)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': {'Body'}}
+
+
+ITERATION 24
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - chassis
+      - Body
+      - sensors
+    - RequirementDefinition:
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - engine.powerOut
+      - engine.controlIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* InterfaceDefinition: SensorInterface (characteristic of sensors, relation to DataPort)
+* RequirementDefinition: FuelEfficiency (relation to FuelTank and engine)
+* Connector: EngineFrameConnector (architectural element, relation between engine and frame, using PortDefinition: PowerPort and ControlPort)
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'FuelEfficiency     '}
+
+
+ACCEPTED (ITERATION 24)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 24)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': {'axle'}}
+
+
+ITERATION 25
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - engine.powerOut
+      - engine.controlIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* InterfaceDefinition: SensorInterface (characteristic of sensors, relation to DataPort)
+* RequirementDefinition: FuelEfficiency (relation to FuelTank and engine)
+* ConnectionDefinition: engine.fuelIn (relation between engine and FuelTank, characteristic of FuelPort)
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'FuelEfficiency     '}
+
+
+ACCEPTED (ITERATION 25)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 25)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'ConstraintUsage': {'WeaponsOnlyWhenAuthorized'}}
+
+
+ITERATION 26
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+    - ConstraintUsage:
+      - WeaponsOnlyWhenAuthorized
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - engine.powerOut
+      - engine.controlIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: AutonomousMode (characteristic) - to define the requirement for the Batmobile to operate in autonomous mode, related to Navigation.
+* **PartUsage**: Battery (architectural element) - to represent the usage of a battery component, which could be connected to the PowerPort and related to the engine and FuelTank.
+* **ConstraintUsage**: SpeedLimit (relation) - to define a constraint on the HighSpeed requirement, ensuring the Batmobile operates within a safe speed limit, related to CrewSafety and Navigation.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'RequirementDefinition': 'AutonomousMode      '}
+- {'PartUsage': 'Battery'}
+- {'ConstraintUsage': 'SpeedLimit'}
+
+
+ACCEPTED (ITERATION 26)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 26)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'RequirementDefinition': {'HighSpeed'}}
+
+
+ITERATION 27
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+    - ConstraintUsage:
+      - WeaponsOnlyWhenAuthorized
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - engine.powerOut
+      - engine.controlIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* InterfaceDefinition: NavigationInterface (architectural element) to connect with Navigation RequirementDefinition
+* RequirementUsage: CrewSafety (characteristic) to ensure safety of the crew is considered
+* ConnectionDefinition: engine.fuelIn - FuelTank.fuelOut (relation) to link engine and FuelTank PartUsages
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'RequirementUsage': 'CrewSafety       '}
+
+
+ACCEPTED (ITERATION 27)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'RequirementUsage': 'CrewSafety       '}
+
+
+ITERATION 28
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - crewSafety
+    - ConstraintUsage:
+      - WeaponsOnlyWhenAuthorized
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - engine.powerOut
+      - engine.controlIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: StealthCapability (characteristic) - to complement the existing HighSpeed and CrewSafety requirements.
+* **PartUsage**: Battery (architectural element) - to connect with the existing PowerPort and provide an alternative power source.
+* **ConstraintUsage**: SpeedLimit (relation) - to relate with the existing HighSpeed requirement and define a specific constraint for the Batmobile's operation.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'StealthCapability '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'Battery        '}
+- {'ConstraintUsage': 'SpeedLimit '}
+
+
+ACCEPTED (ITERATION 28)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'connection- PartDefintion-isTypedBy-PartUsage': 'Engine-Engine'}
+
+CHARACTERISTICS:
+
+
+ITERATION 29
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - crewSafety
+    - ConstraintUsage:
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - Engine-Engine
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - engine.powerOut
+      - engine.controlIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: AutonomousMode (characteristic: functional requirement) - to complement existing requirements like HighSpeed and Navigation.
+* **PortUsage**: sensor.dataOut (relation: connection between sensors and data processing systems) - to link sensors to the DataPort and enable data exchange.
+* **ConstraintUsage**: EmergencyBrakingSystem (architectural element: safety constraint) - to ensure crew safety and interact with existing elements like sensors and ControlPort.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'AutonomousMode  '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PortUsage': 'sensor.dataOut'}
+- {'ConstraintUsage': 'EmergencyBrakingSystem  '}
+
+
+ACCEPTED (ITERATION 29)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'PortUsage': 'sensor.dataOut'}
+
+CHARACTERISTICS:
+
+
+ITERATION 30
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - crewSafety
+    - ConstraintUsage:
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - Engine-Engine
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.powerOut
+      - engine.controlIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: AutonomousMode (characteristic: functional requirement) - to complement existing requirements like HighSpeed and Navigation.
+* **Connection**: PartDefinition-Frame-isTypedBy-PartUsage-Frame (relation: typing relationship) - to establish a connection between the Frame PartDefinition and its usage, similar to the existing Engine connection.
+* **PortUsage**: FuelTank.fuelIn (architectural element: port usage) - to connect the FuelTank with the FuelPort, enabling fuel intake and complementing existing port usages like engine.powerOut.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'AutonomousMode  '}
+
+CONNECTIONS:
+- {'PartDefinition-Frame-isTypedBy-PartUsage-Frame'}
+
+CHARACTERISTICS:
+- {'PortUsage': 'FuelTank.fuelIn'}
+
+
+ACCEPTED (ITERATION 30)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'PortUsage': 'FuelTank.fuelIn'}
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 31)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'PartDefinition-Frame-isTypedBy-PartUsage-Frame'}
+
+CHARACTERISTICS:
+
+
+ITERATION 33
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - crewSafety
+    - ConstraintUsage:
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - Engine-Engine
+    - connection- PartDefinition-isTypedBy-PartUsage:
+      - Frame-Frame
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: StealthCapability (characteristic) - to complement the existing HighSpeed and CrewSafety requirements.
+* **PartUsage**: Battery (architectural element) - to connect with the existing PowerPort and provide an additional power source for the Batmobile.
+* **ConstraintUsage**: SpeedLimitInCity (relation) - to constrain the HighSpeed requirement and ensure safe operation in urban areas, potentially connecting with the existing sensors and Navigation requirement.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'StealthCapability   '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'Battery '}
+- {'ConstraintUsage': 'SpeedLimitInCity  '}
+
+
+ACCEPTED (ITERATION 33)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 33)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'PartDefinition-wheels-isTypedBy-PartUsage-wheels'}
+
+CHARACTERISTICS:
+
+
+ITERATION 34
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - crewSafety
+    - ConstraintUsage:
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - Engine-Engine
+      - frame-frame
+      - wheels-wheels
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: AutonomousMode (characteristic: functional requirement) - to complement existing requirements like HighSpeed and Navigation.
+* **PartUsage**: Battery (architectural element: component) - to connect with existing PortUsage like engine.powerOut and FuelTank.fuelIn, and to relate with PartDefinition: Asset.
+* **ConstraintUsage**: SpeedLimit (relation: constraint) - to relate with RequirementUsage: HighSpeed and PartUsage: wheels, and to connect with existing ConstraintUsage: WeaponsOnlyWhenAuthorized.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'AutonomousMode  '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'Battery '}
+- {'ConstraintUsage': 'SpeedLimit   '}
+
+
+ACCEPTED (ITERATION 34)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 34)
+--------------------------------------------------------------------------------
+ARCH:
+- {'ParDefinition': 'Armor'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 35
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - Armor
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - crewSafety
+    - ConstraintUsage:
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - Engine-Engine
+      - frame-frame
+      - wheels-wheels
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: StealthCapability (characteristic) - to complement the existing HighSpeed and CrewSafety requirements.
+* **PartUsage**: Battery (architectural element) - to connect with the existing PowerPort and provide an additional power source for the Batmobile.
+* **ConstraintUsage**: NightVisionOnlyWhenAuthorized (relation) - to link with the existing sensors and Navigation requirement, and constrain the use of night vision capabilities.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'StealthCapability   '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'Battery '}
+- {'ConstraintUsage': 'NightVisionOnlyWhenAuthorized    '}
+
+
+ACCEPTED (ITERATION 35)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 35)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'ConstraintUsage': 'EngineRequiresFuel'}
+
+
+ITERATION 36
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - Armor
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - crewSafety
+    - ConstraintUsage:
+      - EngineRequiresFuel
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - Engine-Engine
+      - frame-frame
+      - wheels-wheels
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: StealthCapability (characteristic) - to define the requirement for the Batmobile to have stealth capabilities.
+* **PartUsage**: Battery (architectural element) - to represent the usage of a battery in the Batmobile, which could be connected to the PowerPort.
+* **ConstraintUsage**: SpeedLimit (relation) - to define a constraint that limits the speed of the Batmobile, which could be related to the HighSpeed requirement and the EngineRequiresFuel constraint.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'StealthCapability   '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'Battery '}
+- {'ConstraintUsage': 'SpeedLimit     '}
+
+
+ACCEPTED (ITERATION 36)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 36)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'PartDefinition-Chassis-isTypedBy-PartUsage-Chassis'}
+
+CHARACTERISTICS:
+
+
+ITERATION 37
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - Armor
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - crewSafety
+    - ConstraintUsage:
+      - EngineRequiresFuel
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - Engine-Engine
+      - frame-frame
+      - wheels-wheels
+      - chassis-Chassis
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: StealthCapability (characteristic) - to define the requirement for the Batmobile to have stealth capabilities.
+* **PartUsage**: Battery (architectural element) - to represent the usage of a battery in the Batmobile, which could be connected to the PowerPort.
+* **ConstraintUsage**: SpeedLimit (relation) - to define a constraint that limits the speed of the Batmobile, which could be related to the HighSpeed requirement and the EngineRequiresFuel constraint.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'StealthCapability   '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'Battery '}
+- {'ConstraintUsage': 'SpeedLimit     '}
+
+
+ACCEPTED (ITERATION 37)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 37)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'PartDefinition-axle-isTypedBy-PartUsage-axle'}
+
+CHARACTERISTICS:
+
+
+ITERATION 38
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - Armor
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - crewSafety
+    - ConstraintUsage:
+      - EngineRequiresFuel
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - wheels-wheels
+      - axle-axle
+      - frame-frame
+      - Engine-Engine
+      - chassis-Chassis
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: StealthCapability (characteristic) - to define the requirement for the Batmobile to have stealth capabilities.
+* **PartUsage**: CommunicationSystem (architectural element) - to represent the usage of a communication system in the Batmobile, which could be connected to the DataPort.
+* **ConstraintUsage**: SpeedLimit (relation) - to define a constraint on the HighSpeed requirement, limiting the speed of the Batmobile in certain situations, which could be related to the EngineRequiresFuel constraint.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'StealthCapability   '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'CommunicationSystem  '}
+- {'ConstraintUsage': 'SpeedLimit     '}
+
+
+ACCEPTED (ITERATION 38)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 38)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'RequirementUsage': 'NavigationAccurate'}
+
+
+ITERATION 39
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - Armor
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - NavigationAccurate
+      - crewSafety
+    - ConstraintUsage:
+      - EngineRequiresFuel
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - wheels-wheels
+      - axle-axle
+      - frame-frame
+      - Engine-Engine
+      - chassis-Chassis
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: StealthCapability (characteristic) - to define the requirement for the Batmobile to have stealth capabilities.
+* **PartDefinition**: CommunicationSystem (architectural element) - to define a new part that can be used to facilitate communication, and can be connected to the existing DataPort.
+* **ConstraintUsage**: SpeedLimit (relation) - to define a constraint that limits the speed of the Batmobile, which can be related to the existing HighSpeed requirement and Engine part.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'StealthCapability   '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'CommunicationSystem  '}
+- {'ConstraintUsage': 'SpeedLimit     '}
+
+
+ACCEPTED (ITERATION 39)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 39)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'partUsage': 'Armor'}
+
+
+ITERATION 40
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - Armor
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - armor
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - NavigationAccurate
+      - crewSafety
+    - ConstraintUsage:
+      - EngineRequiresFuel
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - wheels-wheels
+      - axle-axle
+      - frame-frame
+      - Engine-Engine
+      - chassis-Chassis
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: StealthCapability (characteristic) - to define the requirement for the Batmobile to have stealth capabilities.
+* **PartDefinition**: CommunicationSystem (architectural element) - to define a new part that can be used to facilitate communication, and can be connected to the existing DataPort.
+* **ConstraintUsage**: SpeedLimit (relation) - to define a constraint that limits the speed of the Batmobile, which can be related to the existing HighSpeed requirement and Engine part.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'StealthCapability   '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'CommunicationSystem  '}
+- {'ConstraintUsage': 'SpeedLimit     '}
+
+
+ACCEPTED (ITERATION 40)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 40)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'PartDefinition-armor-isTypedBy-PartUsage-armor'}
+
+CHARACTERISTICS:
+
+
+ITERATION 41
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - Armor
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - armor
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - NavigationAccurate
+      - crewSafety
+    - ConstraintUsage:
+      - EngineRequiresFuel
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - armor-armor
+      - wheels-wheels
+      - axle-axle
+      - frame-frame
+      - Engine-Engine
+      - chassis-Chassis
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: StealthCapability (characteristic) - to define the requirement for the Batmobile to have stealth capabilities.
+* **PartDefinition**: CommunicationSystem (architectural element) - to define a new part that can be used to facilitate communication, and can be connected to the existing DataPort.
+* **ConstraintUsage**: SpeedLimitation (relation) - to define a constraint that limits the speed of the Batmobile, which can be related to the existing HighSpeed requirement and Engine part.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'StealthCapability   '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'CommunicationSystem  '}
+- {'ConstraintUsage': 'SpeedLimit     '}
+
+
+ACCEPTED (ITERATION 41)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 41)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'PartDefinition-Body-isTypedBy-PartUsage-Body'}
+
+CHARACTERISTICS:
+
+
+ITERATION 42
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - Armor
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - armor
+      - engine
+      - frame
+      - FuelTank
+      - wheels
+      - axle
+      - sensors
+      - Body-Body
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - NavigationAccurate
+      - crewSafety
+    - ConstraintUsage:
+      - EngineRequiresFuel
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - armor-armor
+      - wheels-wheels
+      - axle-axle
+      - frame-frame
+      - Engine-Engine
+      - chassis-Chassis
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: StealthCapability (characteristic) - to define the requirement for the Batmobile to have stealth capabilities.
+* **PartDefinition**: CommunicationSystem (architectural element) - to define a new part that can be used to facilitate communication, and can be connected to the existing DataPort.
+* **ConstraintUsage**: SpeedLimit (relation) - to define a constraint that limits the speed of the Batmobile, which can be related to the existing HighSpeed requirement and Engine part.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'StealthCapability   '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'CommunicationSystem  '}
+- {'ConstraintUsage': 'SpeedLimit     '}
+
+
+ACCEPTED (ITERATION 42)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 42)
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartUsage': 'Panel'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 43
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - engine
+      - Asset
+      - FuelTank
+      - Armor
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - armor
+      - engine
+      - frame
+      - FuelTank
+      - Pnel
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - NavigationAccurate
+      - crewSafety
+    - ConstraintUsage:
+      - EngineRequiresFuel
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - armor-armor
+      - wheels-wheels
+      - axle-axle
+      - frame-frame
+      - Engine-Engine
+      - chassis-Chassis
+      - Body-Body
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: StealthCapability (characteristic) - to define the requirement for the Batmobile to have stealth capabilities.
+* **PartDefinition**: CommunicationSystem (architectural element) - to define a new part that can be used to facilitate communication, and can be connected to the existing DataPort.
+* **ConstraintUsage**: SpeedLimit (relation) - to define a constraint that limits the speed of the Batmobile, which can be related to the existing HighSpeed requirement and Engine part.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'StealthCapability   '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'CommunicationSystem  '}
+- {'ConstraintUsage': 'SpeedLimit     '}
+
+
+ACCEPTED (ITERATION 43)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 43)
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'Panel'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 44)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'PartDefinition-Panel-isTypedBy-PartUsage-Panel'}
+
+CHARACTERISTICS:
+
+
+ITERATION 45
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - Panel
+      - engine
+      - Asset
+      - FuelTank
+      - Armor
+      - wheels
+      - Frame
+      - axle
+    - PartUsage:
+      - chassis
+      - Body
+      - armor
+      - engine
+      - frame
+      - FuelTank
+      - Pnel
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - NavigationAccurate
+      - crewSafety
+    - ConstraintUsage:
+      - EngineRequiresFuel
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - wheels-wheels
+      - axle-axle
+      - chassis-Chassis
+      - Panel-Panel
+      - armor-armor
+      - frame-frame
+      - Engine-Engine
+      - Body-Body
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: StealthCapability (characteristic) - to define the requirement for the Batmobile to have stealth capabilities.
+* **PartDefinition**: CommunicationSystem (architectural element) - to define a new part that can be used to facilitate communication, and can be connected to the existing DataPort.
+* **ConstraintUsage**: SpeedLimitation (relation) - to define a constraint that limits the speed of the Batmobile, which can be related to the existing HighSpeed requirement and Engine part.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'StealthCapability   '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'CommunicationSystem  '}
+- {'ConstraintUsage': 'SpeedLimit     '}
+
+
+ACCEPTED (ITERATION 45)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 45)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'ConstraintDefinition': 'EngineRequiresFuel'}
+
+
+ITERATION 46
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - Panel
+      - engine
+      - Asset
+      - FuelTank
+      - Armor
+      - wheels
+      - Frame
+      - axle
+    - ConstraintDefinition:
+      - EngineRequiresFuel
+    - PartUsage:
+      - chassis
+      - Body
+      - armor
+      - engine
+      - frame
+      - FuelTank
+      - Pnel
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - NavigationAccurate
+      - crewSafety
+    - ConstraintUsage:
+      - EngineRequiresFuel
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - wheels-wheels
+      - axle-axle
+      - chassis-Chassis
+      - Panel-Panel
+      - armor-armor
+      - frame-frame
+      - Engine-Engine
+      - Body-Body
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: StealthCapability (characteristic) - to define the requirement for the Batmobile to have stealth capabilities.
+* **ConstraintDefinition**: WeightLimit (relation) - to define the constraint that the total weight of the Batmobile should not exceed a certain limit, and connect it to **PartUsage** elements such as **chassis**, **Body**, and **Armor**.
+* **PortDefinition**: CommunicationPort (architectural element) - to define a port for communication between the Batmobile's systems, and connect it to **PortUsage** elements such as **sensor.dataOut** and **engine.controlIn**, to enable data exchange between sensors, engine, and other systems.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'StealthCapability   '}
+- {'ConstraintDefinition': 'WeightLimit '}
+- {'PortDefinition': 'CommunicationPort  '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 46)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 46)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+- {'PartUsage': 'Navigation'}
+
+
+ITERATION 47
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - Panel
+      - engine
+      - Asset
+      - FuelTank
+      - Armor
+      - wheels
+      - Frame
+      - axle
+    - ConstraintDefinition:
+      - EngineRequiresFuel
+    - PartUsage:
+      - chassis
+      - Body
+      - armor
+      - Navigation
+      - engine
+      - frame
+      - FuelTank
+      - Pnel
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - NavigationAccurate
+      - crewSafety
+    - ConstraintUsage:
+      - EngineRequiresFuel
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - wheels-wheels
+      - axle-axle
+      - chassis-Chassis
+      - Panel-Panel
+      - armor-armor
+      - frame-frame
+      - Engine-Engine
+      - Body-Body
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: AutonomousMode (characteristic: functional requirement) - to specify the batmobile's ability to operate autonomously.
+* **ConstraintDefinition**: BatteryLifeConstraint (relation: constraint) - to define the relationship between the batmobile's battery life and its operational requirements, connecting to existing **PartDefinition** elements like **Asset** and **FuelTank**.
+* **PortDefinition**: CommunicationPort (architectural element: interface) - to enable communication between the batmobile's systems, such as **sensors** and **Navigation**, and potentially connecting to existing **PortUsage** elements like **sensor.dataOut**.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'AutonomousMode    '}
+- {'ConstraintDefinition': 'BatteryLifeConstraint  '}
+- {'PortDefinition': 'CommunicationPort  '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 47)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 47)
+--------------------------------------------------------------------------------
+ARCH:
+- {'PartDefinition': 'Navigation'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 48
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - Navigation
+      - Panel
+      - engine
+      - Asset
+      - FuelTank
+      - Armor
+      - wheels
+      - Frame
+      - axle
+    - ConstraintDefinition:
+      - EngineRequiresFuel
+    - PartUsage:
+      - chassis
+      - Body
+      - armor
+      - Navigation
+      - engine
+      - frame
+      - FuelTank
+      - Pnel
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - NavigationAccurate
+      - crewSafety
+    - ConstraintUsage:
+      - EngineRequiresFuel
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - wheels-wheels
+      - axle-axle
+      - chassis-Chassis
+      - Panel-Panel
+      - armor-armor
+      - frame-frame
+      - Engine-Engine
+      - Body-Body
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: AutonomousMode (characteristic: functional requirement) - to specify the batmobile's ability to operate independently.
+* **ConstraintDefinition**: WeightLimit (relation: constraint) - to define the maximum weight the batmobile can handle, considering its engine power and chassis strength.
+* **PortDefinition**: CommunicationPort (architectural element: interface) - to enable data exchange between the batmobile's navigation system and external systems, such as Batman's command center, and connect it to the existing **PortUsage** elements, like **sensor.dataOut** and **engine.controlIn**.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'AutonomousMode    '}
+- {'ConstraintDefinition': 'WeightLimit   '}
+- {'PortDefinition': 'CommunicationPort  '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 48)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 48)
+--------------------------------------------------------------------------------
+ARCH:
+- {'ParUsage': 'Module'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ITERATION 49
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Body
+      - Navigation
+      - Panel
+      - engine
+      - Asset
+      - FuelTank
+      - Armor
+      - wheels
+      - Frame
+      - axle
+    - ConstraintDefinition:
+      - EngineRequiresFuel
+    - PartUsage:
+      - chassis
+      - Module
+      - Body
+      - Navigation
+      - armor
+      - engine
+      - frame
+      - FuelTank
+      - Pnel
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - NavigationAccurate
+      - crewSafety
+    - ConstraintUsage:
+      - EngineRequiresFuel
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - wheels-wheels
+      - axle-axle
+      - chassis-Chassis
+      - Panel-Panel
+      - armor-armor
+      - frame-frame
+      - Engine-Engine
+      - Body-Body
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: AutonomousMode (characteristic: functional requirement) - to specify the Batmobile's ability to operate independently.
+* **PartDefinition**: CommunicationSystem (architectural element: subsystem) - to enable communication between the Batmobile and other entities, connecting to **PortDefinition**: DataPort.
+* **ConstraintDefinition**: SpeedLimit (relation: constraint) - to restrict the Batmobile's speed in certain situations, linking to **PartUsage**: engine and **RequirementUsage**: HighSpeed.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'AutonomousMode    '}
+- {'ConstraintDefinition': 'SpeedLimit    '}
+- {'PortDefinition': 'CommunicationPort  '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ACCEPTED (ITERATION 49)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 49)
+--------------------------------------------------------------------------------
+ARCH:
+- {'ParDefinition': 'Module'}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
+
+
+ADDED ELEMENTS MANUALLY (ITERATION 50)
+--------------------------------------------------------------------------------
+ARCH:
+
+CONNECTIONS:
+- {'PartDefinition-Module-isTypedBy-PartUsage-Module'}
+
+CHARACTERISTICS:
+
+
+ITERATION 51
+--------------------------------------------------------------------------------
+PROMPT
+--------------------------------------------------------------------------------
+You are a modeling assistant. Complete a partial sysmlv2 for the scenario.
+
+                Scenario: Batmobile functional
+                Current partial model:
+                Elements: 
+     - PartDefinition:
+      - chassis
+      - Module
+      - Body
+      - Navigation
+      - Panel
+      - engine
+      - Asset
+      - FuelTank
+      - Armor
+      - wheels
+      - Frame
+      - axle
+    - ConstraintDefinition:
+      - EngineRequiresFuel
+    - PartUsage:
+      - chassis
+      - Module
+      - Body
+      - Navigation
+      - armor
+      - engine
+      - frame
+      - FuelTank
+      - Pnel
+      - wheels
+      - axle
+      - sensors
+    - RequirementDefinition:
+      - HighSpeed
+      - CrewSafety
+      - Navigation
+    - RequirementUsage:
+      - HighSpeed
+      - NavigationAccurate
+      - crewSafety
+    - ConstraintUsage:
+      - EngineRequiresFuel
+      - WeaponsOnlyWhenAuthorized
+    - connection- PartDefintion-isTypedBy-PartUsage:
+      - wheels-wheels
+      - axle-axle
+      - chassis-Chassis
+      - Panel-Panel
+      - armor-armor
+      - Module-Module
+      - frame-frame
+      - Engine-Engine
+      - Body-Body
+    - PortDefinition:
+      - FuelPort
+      - DataPort
+      - PowerPort
+      - ControlPort
+    - PortUsage:
+      - sensor.dataOut
+      - engine.controlIn
+      - engine.powerOut
+      - FuelTank.fuelIn
+
+                Task:
+                Propose up to 3 additions to extend the model. An addition should mention the type of the suggested concept as used in the metamodel of sysmlv2
+                and then you can optionally say if it is a characteristic or a relation or a architectural element.
+
+                Write as a bullet list. Be concise. inspire from what is already in the model and follow the elements types there. Try to follow how things are linked and named in partial model and find what is missing.
+                Try to connect elements and types that are already in the model. suggest existing types like in example
+
+MODEL OUTPUT
+--------------------------------------------------------------------------------
+Here are three proposed additions to extend the model:
+
+* **RequirementDefinition**: AutonomousMode (characteristic: functional requirement) - to specify the Batmobile's ability to operate independently.
+* **ConstraintDefinition**: WeightLimit (relation: constraint) - to define the maximum weight the Batmobile can handle, considering its engine power and axle strength.
+* **PortDefinition**: CommunicationPort (architectural element: interface) - to enable data exchange between the Batmobile's navigation system and external devices, such as Batman's utility belt or other vehicles.
+
+MANUAL CLASSIFICATION
+--------------------------------------------------------------------------------
+ARCH:
+- {'RequirementDefinition': 'AutonomousMode    '}
+- {'ConstraintDefinition': 'SpeedLimit    '}
+- {'PortDefinition': 'CommunicationPort  '}
+
+CONNECTIONS:
+
+CHARACTERISTICS:
