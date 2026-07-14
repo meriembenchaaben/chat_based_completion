@@ -15,12 +15,12 @@ source ~/.venvs/llama/bin/activate
 
 ## 2) Install dependencies
 
-### Option A — from `requirements.txt`
+### Option A:  from `requirements.txt`
 ```bash
 pip install -r requirements.txt
 ```
 
-### Option B — install packages manually
+### Option B: install packages manually
 ```bash
 python -m pip install -U pip wheel setuptools
 python -m pip install -U transformers accelerate optimum
@@ -30,7 +30,7 @@ python -m pip install -U openai
 
 ---
 
-## 3) GPU environment variables - this is appropriate  for the author setup
+## 3) GPU environment variables: this is appropriate  for the author setup
 
 ```bash
 # Use all 4 GPUs
